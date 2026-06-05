@@ -18,6 +18,7 @@ export default function Footer() {
             <li><a href="#como-funciona" className="hover:text-white">Cómo funciona</a></li>
             <li><a href="#estaciones" className="hover:text-white">Estaciones</a></li>
             <li><a href="#beneficios" className="hover:text-white">Beneficios</a></li>
+            <li><a href="#planes" className="hover:text-white">Planes</a></li>
             <li><a href="#faq" className="hover:text-white">FAQ</a></li>
           </ul>
         </div>

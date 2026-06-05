@@ -5,6 +5,7 @@ import Trust from "./components/Trust";
 import HowItWorks from "./components/HowItWorks";
 import StationsMap from "./components/StationsMap";
 import Benefits from "./components/Benefits";
+import Plans from "./components/Plans";
 import Future from "./components/Future";
 import Testimonials from "./components/Testimonials";
 import FAQ from "./components/FAQ";
@@ -42,6 +43,7 @@ export default function App() {
         <HowItWorks onActivar={openLead} />
         <StationsMap />
         <Benefits />
+        <Plans onActivar={openLead} />
         <Future />
         <Testimonials />
         <FAQ />

@@ -7,6 +7,7 @@ const links = [
   { label: "Cómo funciona", href: "#como-funciona" },
   { label: "Estaciones", href: "#estaciones" },
   { label: "Beneficios", href: "#beneficios" },
+  { label: "Planes", href: "#planes" },
   { label: "FAQ", href: "#faq" },
 ];
 

@@ -84,6 +84,25 @@ export default function Trust() {
                 Simple. <span className="text-[#f5961d]">Transparente.</span> Sin intermediarios.
               </p>
             </div>
+
+            <motion.div
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: "-60px" }}
+              transition={{ duration: 0.6, delay: 0.1 }}
+              className="relative mt-4 overflow-hidden rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-transparent p-6 sm:p-7"
+              data-testid="trust-tagline"
+            >
+              <div className="absolute -top-12 -right-12 h-44 w-44 rounded-full bg-[#f5961d]/15 blur-[80px]" />
+              <div className="relative font-display text-xl sm:text-2xl lg:text-[28px] leading-snug tracking-tight">
+                <span className="text-white/55">No depositas.</span>{" "}
+                <span className="text-white/55">No adelantas.</span>{" "}
+                <span className="text-white/55">No transfieres.</span>
+                <br />
+                <span className="text-white">Cargas, pagas en caja</span>{" "}
+                <span className="text-[#f5961d]">y sigues tu ruta.</span>
+              </div>
+            </motion.div>
           </div>
         </div>
       </div>
