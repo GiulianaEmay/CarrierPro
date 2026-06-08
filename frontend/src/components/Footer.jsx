@@ -27,7 +27,7 @@ export default function Footer() {
           <ul className="mt-3 space-y-2 text-sm text-white/70">
             <li>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#f5961d]">
-                WhatsApp: +51 973 982 417
+                WhatsApp: +51 916 776 302
               </a>
             </li>
             <li>Trujillo · La Libertad · Perú</li>

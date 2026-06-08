@@ -14,7 +14,7 @@ import Footer from "./components/Footer";
 import LeadModal from "./components/LeadModal";
 import StickyWhatsApp from "./components/StickyWhatsApp";
 
-export const WHATSAPP_NUMBER = "51973982417";
+export const WHATSAPP_NUMBER = "51916776302";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
   "Hola Carrier Pro, quiero más información sobre la afiliación de mi unidad."
 )}`;
