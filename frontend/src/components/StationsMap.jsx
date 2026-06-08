@@ -1,57 +1,12 @@
-import React, { useEffect, useState } from "react";
-import { motion } from "framer-motion";
-import { MapPin, Clock, Phone, ExternalLink, BadgeCheck } from "lucide-react";
+import React from "react";
+import { ExternalLink, MapPin, Navigation } from "lucide-react";
 
-const MAPS_LIST_URL = "https://maps.app.goo.gl/xrVhoPWKmunM6TuV8";
+const MAPS_LIST_URL =
+  "https://www.google.com/maps/d/edit?mid=136EwYhSwDgYk99e5VftSFBw0Lgmcsco&usp=sharing";
 const MAP_EMBED =
-  "https://www.google.com/maps?q=Trujillo,La+Libertad,Peru&z=11&output=embed";
-
-const STATIONS = [
-  {
-    id: "est-trujillo-centro",
-    nombre: "Estación Trujillo Centro",
-    direccion: "Av. España 1234, Trujillo, La Libertad",
-    horario: "24 horas",
-    telefono: "+51 944 123 456",
-    imagen: "https://images.unsplash.com/photo-1545459720-aac8509eb02c?auto=format&fit=crop&w=800&q=70",
-    estado: "Operativa",
-    maps_url: MAPS_LIST_URL,
-  },
-  {
-    id: "est-trujillo-norte",
-    nombre: "Estación Trujillo Norte",
-    direccion: "Panamericana Norte Km 558, Trujillo",
-    horario: "05:00 - 23:00",
-    telefono: "+51 944 555 222",
-    imagen: "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?auto=format&fit=crop&w=800&q=70",
-    estado: "Operativa",
-    maps_url: MAPS_LIST_URL,
-  },
-  {
-    id: "est-la-libertad-sur",
-    nombre: "Estación La Libertad Sur",
-    direccion: "Panamericana Sur Km 562, La Libertad",
-    horario: "24 horas",
-    telefono: "+51 944 777 888",
-    imagen: "https://images.unsplash.com/photo-1545459720-aac8509eb02c?auto=format&fit=crop&w=800&q=70",
-    estado: "Operativa",
-    maps_url: MAPS_LIST_URL,
-  },
-  {
-    id: "est-moche",
-    nombre: "Estación Moche",
-    direccion: "Av. La Marina s/n, Moche, La Libertad",
-    horario: "05:00 - 22:00",
-    telefono: "+51 944 333 999",
-    imagen: "https://images.unsplash.com/photo-1527018601619-a508a2be00cd?auto=format&fit=crop&w=800&q=70",
-    estado: "Operativa",
-    maps_url: MAPS_LIST_URL,
-  },
-];
+  "https://www.google.com/maps/d/embed?mid=136EwYhSwDgYk99e5VftSFBw0Lgmcsco&ehbc=2E312F&noprof=1";
 
 export default function StationsMap() {
-  const [active, setActive] = useState(STATIONS[0]);
-
   return (
     <section
       id="estaciones"
@@ -61,20 +16,20 @@ export default function StationsMap() {
       <div className="container-cp">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
-            <span className="section-label">Mapa & estaciones</span>
+            <span className="section-label">Mapa de estaciones</span>
             <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[58px] leading-[1.0] tracking-tight">
               Encuentra estaciones <br />
-              <span className="text-[#f5961d]">afiliadas.</span>
+              <span className="text-[#f5961d]">afiliadas Primax.</span>
             </h2>
             <p className="mt-5 text-white/60 text-base sm:text-lg max-w-lg">
-              Consulta ubicaciones, horarios y beneficios disponibles. Comenzamos en Trujillo y La Libertad, preparados para expansión nacional.
+              Estas son las estaciones donde puedes usar tu QR Carrier Pro y acceder al precio de convenio. Comenzamos en Trujillo y La Libertad, en expansión nacional.
             </p>
           </div>
           <a
             href={MAPS_LIST_URL}
             target="_blank"
             rel="noopener noreferrer"
-            className="btn-secondary"
+            className="btn-secondary shrink-0"
             data-testid="open-full-map"
           >
             Ver mapa completo
@@ -82,73 +37,50 @@ export default function StationsMap() {
           </a>
         </div>
 
-        <div className="mt-12 grid lg:grid-cols-[1.4fr_1fr] gap-6">
-          <div className="relative h-[360px] sm:h-[480px] rounded-3xl border border-white/10 overflow-hidden bg-black" data-testid="map-container">
-            <iframe
-              title="Estaciones Carrier Pro - Trujillo, La Libertad"
-              src={MAP_EMBED}
-              loading="lazy"
-              className="absolute inset-0 h-full w-full"
-              style={{ filter: "invert(0.92) hue-rotate(180deg)" }}
-              referrerPolicy="no-referrer-when-downgrade"
-              allowFullScreen
-            />
-            <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/40" />
-            <div className="absolute top-4 left-4 rounded-full border border-white/20 bg-black/60 backdrop-blur-md px-3 py-1.5 text-[11px] font-mono uppercase tracking-[0.18em] flex items-center gap-2">
-              <span className="h-1.5 w-1.5 rounded-full bg-[#f5961d] flicker" /> Trujillo · La Libertad
-            </div>
-          </div>
-
-          <div className="space-y-3">
-            <ActiveCard s={active} />
-            <div className="grid grid-cols-2 gap-3">
-              {STATIONS.slice(0, 4).map((s) => (
-                <button
-                  key={s.id}
-                  onClick={() => setActive(s)}
-                  className={`text-left rounded-2xl border p-3 transition-all ${
-                    active?.id === s.id
-                      ? "border-[#f5961d]/50 bg-[#f5961d]/[0.06]"
-                      : "border-white/10 bg-white/[0.02] hover:border-white/20"
-                  }`}
-                  data-testid={`station-tab-${s.id}`}
-                >
-                  <div className="text-xs font-mono uppercase tracking-wider text-white/40">Estación</div>
-                  <div className="text-sm font-semibold mt-1 leading-tight">{s.nombre}</div>
-                </button>
-              ))}
-            </div>
+        {/* Map */}
+        <div
+          className="mt-12 relative h-[480px] sm:h-[560px] lg:h-[640px] rounded-3xl border border-white/10 overflow-hidden bg-black"
+          data-testid="map-container"
+        >
+          <iframe
+            title="Estaciones Primax afiliadas a Carrier Pro"
+            src={MAP_EMBED}
+            loading="lazy"
+            className="absolute inset-0 h-full w-full"
+            referrerPolicy="no-referrer-when-downgrade"
+            allowFullScreen
+          />
+          <div className="pointer-events-none absolute top-4 left-4 rounded-full border border-white/20 bg-black/70 backdrop-blur-md px-3.5 py-1.5 text-[11px] font-mono uppercase tracking-[0.18em] flex items-center gap-2">
+            <span className="h-1.5 w-1.5 rounded-full bg-[#f5961d] flicker" /> Estaciones Carrier Pro · Primax
           </div>
         </div>
 
-        <div className="mt-16">
+        {/* Helper row */}
+        <div className="mt-6 grid sm:grid-cols-2 gap-4">
+          <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.025] p-4">
+            <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f5961d]/15 border border-[#f5961d]/30 text-[#f5961d]">
+              <MapPin size={18} />
+            </div>
+            <div>
+              <div className="text-sm font-semibold">Haz clic en cualquier pin</div>
+              <div className="text-xs text-white/55 mt-0.5 leading-relaxed">
+                Verás nombre, dirección y horario de cada estación afiliada.
+              </div>
+            </div>
+          </div>
+          <div className="flex items-start gap-3 rounded-2xl border border-white/10 bg-white/[0.025] p-4">
+            <div className="inline-flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-[#f5961d]/15 border border-[#f5961d]/30 text-[#f5961d]">
+              <Navigation size={18} />
+            </div>
+            <div>
+              <div className="text-sm font-semibold">Cómo llegar</div>
+              <div className="text-xs text-white/55 mt-0.5 leading-relaxed">
+                Desde cada pin puedes abrir la ruta directamente en Google Maps.
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
-  );
-}
-
-function ActiveCard({ s }) {
-  return (
-    <div className="rounded-3xl border border-white/10 bg-white/[0.03] p-5 sm:p-6" data-testid="active-station-card">
-      <div className="flex items-start justify-between gap-3">
-        <div>
-          <div className="text-[11px] font-mono uppercase tracking-[0.18em] text-[#f5961d]">Seleccionada</div>
-          <h4 className="font-display text-2xl mt-1">{s.nombre}</h4>
-        </div>
-        <span className="inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider rounded-full border border-emerald-400/30 bg-emerald-400/10 text-emerald-300 px-2 py-1">
-          <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> {s.estado}
-        </span>
-      </div>
-      <div className="mt-4 space-y-2.5 text-sm text-white/70">
-        <div className="flex items-start gap-2.5"><MapPin size={14} className="text-[#f5961d] mt-0.5 shrink-0" /> {s.direccion}</div>
-        <div className="flex items-center gap-2.5"><Clock size={14} className="text-[#f5961d]" /> {s.horario}</div>
-        <div className="flex items-center gap-2.5"><Phone size={14} className="text-[#f5961d]" /> {s.telefono}</div>
-      </div>
-      <a href={s.maps_url} target="_blank" rel="noopener noreferrer" className="btn-primary mt-5 w-full" data-testid="active-station-directions">
-        Cómo llegar
-        <ExternalLink size={16} />
-      </a>
-    </div>
   );
 }
