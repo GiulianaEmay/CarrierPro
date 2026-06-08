@@ -4,7 +4,7 @@
   publish = "dist"
 
 [build.environment]
-  NODE_VERSION = "20"
+  NODE_VERSION = "18.20.4"
   CI = "false"
   BUILD_PATH = "dist"
   DISABLE_ESLINT_PLUGIN = "true"
