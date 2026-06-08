@@ -1,0 +1,21 @@
+[build]
+  base = "frontend"
+  command = "npm install --legacy-peer-deps && npm run build"
+  publish = "frontend/dist"
+
+[build.environment]
+  NODE_VERSION = "20"
+  CI = "false"
+  BUILD_PATH = "dist"
+  DISABLE_ESLINT_PLUGIN = "true"
+
+# SPA fallback - all routes go to index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+[[headers]]
+  for = "/static/*"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"

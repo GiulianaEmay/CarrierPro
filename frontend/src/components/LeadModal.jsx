@@ -1,10 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, CheckCircle2, AlertCircle, Phone, User, Building2, Mail, Truck, MessageCircle } from "lucide-react";
-import axios from "axios";
-import { WHATSAPP_URL, WHATSAPP_NUMBER } from "../App";
-
-const API = process.env.REACT_APP_BACKEND_URL;
+import { WHATSAPP_NUMBER } from "../App";
 
 export default function LeadModal({ open, onClose }) {
   const [form, setForm] = useState({
@@ -14,17 +11,14 @@ export default function LeadModal({ open, onClose }) {
     empresa: "",
     unidades: 1,
   });
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
-  // Lock scroll when open
   useEffect(() => {
     if (open) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "";
-      // reset state after close animation
       const t = setTimeout(() => {
         setError("");
         setSuccess(false);
@@ -42,42 +36,19 @@ export default function LeadModal({ open, onClose }) {
     setForm((f) => ({ ...f, [k]: v }));
   };
 
-  const submit = async (e) => {
+  const submit = (e) => {
     e.preventDefault();
     setError("");
-
     if (form.nombre.trim().length < 2) return setError("Ingresa tu nombre.");
     if (form.telefono.trim().length < 6) return setError("Ingresa un teléfono válido.");
     if (!form.unidades || form.unidades < 1) return setError("Indica el número de unidades.");
-
-    setLoading(true);
-    try {
-      await axios.post(`${API}/api/leads`, {
-        nombre: form.nombre.trim(),
-        telefono: form.telefono.trim(),
-        correo: form.correo.trim() || null,
-        empresa: form.empresa.trim() || null,
-        unidades: parseInt(form.unidades, 10),
-        fuente: "landing-modal",
-      });
-      setSuccess(true);
-    } catch (err) {
-      setError(
-        err?.response?.data?.detail
-          ? typeof err.response.data.detail === "string"
-            ? err.response.data.detail
-            : "Revisa los datos ingresados."
-          : "No pudimos enviar tu solicitud. Intenta nuevamente."
-      );
-    } finally {
-      setLoading(false);
-    }
+    setSuccess(true);
   };
 
   const waText = encodeURIComponent(
     `Hola Carrier Pro, soy ${form.nombre || "[nombre]"}${
       form.empresa ? ` de ${form.empresa}` : ""
-    }. Quiero activar ${form.unidades} unidad${form.unidades > 1 ? "es" : ""}. Mi teléfono: ${form.telefono}`
+    }. Quiero activar ${form.unidades} unidad${form.unidades > 1 ? "es" : ""}. Mi teléfono: ${form.telefono}${form.correo ? `. Correo: ${form.correo}` : ""}`
   );
   const waSuccessUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
 
@@ -104,7 +75,7 @@ export default function LeadModal({ open, onClose }) {
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
             className="relative w-full sm:max-w-lg bg-[#0a0a0a] border border-white/10 sm:rounded-3xl rounded-t-3xl shadow-2xl overflow-hidden"
           >
-            <div className="absolute -top-32 -right-32 h-72 w-72 rounded-full bg-[#f5961d]/15 blur-[100px] pointer-events-none" />
+            <div className="absolute -top-32 -right-32 h-72 w-72 rounded-full bg-[#f5961d]/20 blur-[100px] pointer-events-none" />
 
             <button
               onClick={onClose}
@@ -129,54 +100,13 @@ export default function LeadModal({ open, onClose }) {
                 </p>
 
                 <form onSubmit={submit} className="mt-6 space-y-3.5" data-testid="lead-form">
-                  <Field
-                    label="Nombre"
-                    icon={User}
-                    name="nombre"
-                    placeholder="Tu nombre completo"
-                    value={form.nombre}
-                    onChange={onChange("nombre")}
-                    required
-                  />
-                  <Field
-                    label="Teléfono"
-                    icon={Phone}
-                    name="telefono"
-                    type="tel"
-                    placeholder="+51 9xx xxx xxx"
-                    value={form.telefono}
-                    onChange={onChange("telefono")}
-                    required
-                  />
+                  <Field label="Nombre" icon={User} name="nombre" placeholder="Tu nombre completo" value={form.nombre} onChange={onChange("nombre")} required />
+                  <Field label="Teléfono" icon={Phone} name="telefono" type="tel" placeholder="+51 9xx xxx xxx" value={form.telefono} onChange={onChange("telefono")} required />
                   <div className="grid grid-cols-2 gap-3">
-                    <Field
-                      label="Unidades"
-                      icon={Truck}
-                      name="unidades"
-                      type="number"
-                      min={1}
-                      value={form.unidades}
-                      onChange={onChange("unidades")}
-                      required
-                    />
-                    <Field
-                      label="Empresa (opcional)"
-                      icon={Building2}
-                      name="empresa"
-                      placeholder="Razón social"
-                      value={form.empresa}
-                      onChange={onChange("empresa")}
-                    />
+                    <Field label="Unidades" icon={Truck} name="unidades" type="number" min={1} value={form.unidades} onChange={onChange("unidades")} required />
+                    <Field label="Empresa (opcional)" icon={Building2} name="empresa" placeholder="Razón social" value={form.empresa} onChange={onChange("empresa")} />
                   </div>
-                  <Field
-                    label="Correo (opcional)"
-                    icon={Mail}
-                    name="correo"
-                    type="email"
-                    placeholder="correo@ejemplo.com"
-                    value={form.correo}
-                    onChange={onChange("correo")}
-                  />
+                  <Field label="Correo (opcional)" icon={Mail} name="correo" type="email" placeholder="correo@ejemplo.com" value={form.correo} onChange={onChange("correo")} />
 
                   {error && (
                     <div className="rounded-xl border border-red-500/30 bg-red-500/10 text-red-300 text-sm px-3.5 py-2.5 flex items-start gap-2" data-testid="lead-error">
@@ -184,14 +114,9 @@ export default function LeadModal({ open, onClose }) {
                     </div>
                   )}
 
-                  <button
-                    type="submit"
-                    disabled={loading}
-                    className="btn-primary w-full disabled:opacity-60 disabled:cursor-not-allowed"
-                    data-testid="lead-submit"
-                  >
-                    {loading ? "Enviando..." : "QUIERO ACTIVAR MI UNIDAD"}
-                    {!loading && <ArrowRight size={18} />}
+                  <button type="submit" className="btn-primary w-full" data-testid="lead-submit">
+                    QUIERO ACTIVAR MI UNIDAD
+                    <ArrowRight size={18} />
                   </button>
 
                   <div className="text-center text-[11px] text-white/40 mt-1 font-mono uppercase tracking-wider">
@@ -205,15 +130,15 @@ export default function LeadModal({ open, onClose }) {
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ type: "spring", stiffness: 180, damping: 15 }}
-                  className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#f5961d]/15 border border-[#f5961d]/40 text-[#f5961d]"
+                  className="mx-auto inline-flex h-16 w-16 items-center justify-center rounded-full bg-[#f5961d]/20 border border-[#f5961d]/40 text-[#f5961d]"
                 >
                   <CheckCircle2 size={32} />
                 </motion.div>
                 <h3 className="font-display mt-5 text-2xl sm:text-3xl leading-tight">
-                  ¡Solicitud recibida!
+                  ¡Listo {form.nombre.split(" ")[0]}!
                 </h3>
                 <p className="mt-3 text-white/70 max-w-sm mx-auto">
-                  Gracias <span className="text-white font-medium">{form.nombre.split(" ")[0]}</span>. Continúa por WhatsApp para activar tu unidad ahora mismo.
+                  Continúa por WhatsApp para activar tu unidad ahora mismo. Te llevaremos con un mensaje pre-rellenado.
                 </p>
                 <a
                   href={waSuccessUrl}
@@ -245,7 +170,7 @@ function Field({ label, icon: Icon, name, ...rest }) {
   return (
     <label className="block" htmlFor={`lead-${name}`}>
       <span className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">{label}</span>
-      <div className="mt-1.5 flex items-center gap-2 rounded-xl border border-white/10 bg-black/40 focus-within:border-[#f5961d]/60 focus-within:ring-2 focus-within:ring-[#f5961d]/15 transition-all px-3.5 py-3">
+      <div className="mt-1.5 flex items-center gap-2 rounded-xl border border-white/10 bg-black/40 focus-within:border-[#f5961d]/60 focus-within:ring-2 focus-within:ring-[#f5961d]/20 transition-all px-3.5 py-3">
         <Icon size={16} className="text-white/40 shrink-0" />
         <input
           id={`lead-${name}`}
