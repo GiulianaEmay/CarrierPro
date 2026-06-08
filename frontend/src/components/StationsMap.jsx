@@ -122,48 +122,6 @@ export default function StationsMap() {
         </div>
 
         <div className="mt-16">
-          <div className="flex items-end justify-between mb-6">
-            <h3 className="font-display text-2xl sm:text-3xl">Estaciones disponibles</h3>
-            <span className="font-mono text-xs uppercase tracking-[0.2em] text-white/40">
-              {STATIONS.length} activas
-            </span>
-          </div>
-          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-5">
-            {STATIONS.map((s, i) => (
-              <motion.div
-                key={s.id}
-                initial={{ opacity: 0, y: 16 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ duration: 0.5, delay: i * 0.05 }}
-                className="group card hover:border-[#f5961d]/30 transition-colors"
-                data-testid={`station-card-${s.id}`}
-              >
-                <div className="relative h-44 overflow-hidden">
-                  <img src={s.imagen} alt={s.nombre} loading="lazy" className="h-full w-full object-cover opacity-80 group-hover:opacity-95 transition-opacity" />
-                  <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/30 to-transparent" />
-                  <span className="absolute top-3 left-3 inline-flex items-center gap-1 text-[10px] font-mono uppercase tracking-wider rounded-full bg-[#f5961d] text-black px-2.5 py-1">
-                    <BadgeCheck size={10} strokeWidth={3} /> Beneficio Carrier Pro
-                  </span>
-                  <span className="absolute bottom-3 left-3 text-[11px] font-mono uppercase tracking-wider text-white/70 flex items-center gap-1.5">
-                    <span className="h-1.5 w-1.5 rounded-full bg-emerald-400" /> {s.estado}
-                  </span>
-                </div>
-                <div className="p-5">
-                  <h4 className="text-lg font-semibold leading-tight">{s.nombre}</h4>
-                  <p className="mt-1 text-sm text-white/60">{s.direccion}</p>
-                  <div className="mt-4 flex items-center justify-between">
-                    <span className="text-[11px] font-mono uppercase tracking-wider text-white/40 flex items-center gap-1.5">
-                      <Clock size={12} /> {s.horario}
-                    </span>
-                    <a href={s.maps_url} target="_blank" rel="noopener noreferrer" className="inline-flex items-center gap-1.5 text-sm font-semibold text-[#f5961d] hover:text-white transition-colors" data-testid={`station-cta-${s.id}`}>
-                      Cómo llegar <ExternalLink size={14} />
-                    </a>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
-          </div>
         </div>
       </div>
     </section>

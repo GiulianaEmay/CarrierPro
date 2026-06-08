@@ -4,13 +4,29 @@ import { Plus, Minus } from "lucide-react";
 
 const FAQS = [
   {
-    q: "¿Tengo que pagar el combustible a Carrier Pro?",
-    a: "No. El pago se realiza directamente en la estación. Carrier Pro nunca recibe el dinero del combustible.",
+    q: "¿Tengo que depositar dinero a Carrier Pro para cargar combustible?",
+    a: "No. Nunca. Tu dinero va directo a la estación Primax en caja. Carrier Pro solo cobra la membresía mensual por el acceso al convenio.",
   },
-  { q: "¿Quién me factura?", a: "La estación. La factura se emite directamente a tu RUC, como siempre lo has hecho." },
-  { q: "¿La membresía es por persona?", a: "No. Es por unidad. Cada vehículo cuenta con su propia membresía activa." },
-  { q: "¿Puedo registrar varias unidades?", a: "Sí. Puedes registrar todas las unidades que necesites, sin límite." },
-  { q: "¿Puedo cancelar?", a: "Sí. Sin contratos largos. Cancela cuando quieras, sin penalidades ocultas." },
+  {
+    q: "¿Cuánto voy a ahorrar exactamente?",
+    a: "Depende del precio de convenio vigente vs el precio pizarra del día. El ahorro varía, pero siempre es significativamente menor al precio pizarra. Con 2 viajes semanales y 2 tanqueadas por viaje, el ahorro mensual supera ampliamente los S/50 de membresía.",
+  },
+  {
+    q: "¿En qué estaciones Primax puedo usar mi QR?",
+    a: "En las estaciones Primax afiliadas al convenio en Trujillo. Estamos en expansión. Al activar tu membresía te confirmamos las estaciones disponibles.",
+  },
+  {
+    q: "¿Puedo registrar más de una unidad?",
+    a: "Sí. Cada placa es una membresía independiente a S/50/mes. Si tienes más de 5 unidades consulta por nuestro descuento especial.",
+  },
+  {
+    q: "¿Qué pasa si quiero cancelar?",
+    a: "Cancelas cuando quieras. Sin penalidades, sin contratos de permanencia. Un mensaje a WhatsApp y listo.",
+  },
+  {
+    q: "¿El QR de prueba es realmente gratis?",
+    a: "Sí. Te damos acceso al precio de convenio antes de que pagues la membresía. Para que compruebes el ahorro tú mismo en estación antes de decidir.",
+  },
 ];
 
 export default function FAQ() {
