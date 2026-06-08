@@ -34,7 +34,7 @@ export default function Hero({ onActivar }) {
               className="section-label"
               data-testid="hero-tag"
             >
-              <Fuel size={12} /> Carrier Pro — Transportistas independientes
+              <Fuel size={12} /> Precio convenio en combustible con Primax
             </motion.span>
 
             <motion.h1
@@ -44,11 +44,11 @@ export default function Hero({ onActivar }) {
               className="font-display mt-6 text-[44px] leading-[0.95] sm:text-6xl lg:text-[78px] lg:leading-[0.92] tracking-tight"
               data-testid="hero-headline"
             >
-              AHORRA EN CADA
+              PAGA MENOS
               <br />
-              <span className="text-[#f5961d]">CARGA DE</span>
+              <span className="text-[#f5961d]">DESDE HOY</span>
               <br />
-              COMBUSTIBLE.
+              EN CADA CARGA.
             </motion.h1>
 
             <motion.p
@@ -58,8 +58,7 @@ export default function Hero({ onActivar }) {
               className="mt-6 max-w-xl text-base sm:text-lg text-white/70 leading-relaxed"
               data-testid="hero-subheadline"
             >
-              Únete a Carrier Pro y accede a beneficios exclusivos para
-              transportistas independientes.{" "}
+              Carrier Pro consolida tu consumo junto al de cientos de transportistas y te da el precio costo. Sin intermediarios, sin anticipos, sin costos ocultos. Paga directo en la estación.{" "}
               <span className="text-white">
                 Los beneficios de una gran flota. Sin ser una gran flota.
               </span>
@@ -212,7 +211,7 @@ function TruckRoute() {
           <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-white/40">
             Ruta
           </div>
-          <div className="text-sm font-semibold mt-0.5">Trujillo → La Libertad</div>
+          <div className="text-sm font-semibold mt-0.5">Trujillo → Nivel nacional</div>
         </div>
         <div className="rounded-2xl border border-[#f5961d]/30 bg-[#f5961d]/10 backdrop-blur-lg px-4 py-3 text-right">
           <div className="font-mono text-[10px] uppercase tracking-[0.2em] text-[#f5961d]">

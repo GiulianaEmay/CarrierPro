@@ -5,20 +5,20 @@ import { Wallet, Fuel, Receipt } from "lucide-react";
 const BLOCKS = [
   {
     icon: Wallet,
-    title: "No entregas dinero a Carrier Pro",
-    desc: "Tu dinero nunca sale de tus manos. No hay depósitos, no hay adelantos.",
+    title: "No nos das tu dinero",
+    desc: "No depositas nada en Carrier Pro de combustibles. Nunca.",
     tag: "Dinero",
   },
   {
     icon: Fuel,
     title: "Pagas directamente en la estación",
-    desc: "Como siempre. Mismo proceso, mejores condiciones.",
+    desc: "Efectivo, tarjeta o Yape. Igual que siempre. Solo que más barato.",
     tag: "Surtidor",
   },
   {
     icon: Receipt,
-    title: "La estación te factura directamente",
-    desc: "Tu RUC, tu comprobante. Sin intermediarios contables.",
+    title: "La factura es tuya, no nuestra",
+    desc: "Primax te factura a ti. Tu RUC. Tu comprobante. Sin intermediarios.",
     tag: "Factura",
   },
 ];
@@ -40,7 +40,7 @@ export default function Trust() {
               bajo tu control.
             </h2>
             <p className="mt-5 text-white/60 text-base sm:text-lg max-w-md">
-              Simple. Transparente. Sin intermediarios. Carrier Pro no toca tu dinero — solo desbloquea mejores condiciones.
+              No hay depósitos. No hay adelantos. No hay transferencias. Llegas a la estación, muestras tu QR, pagas en caja como siempre, y te vas con el precio de convenio.
             </p>
           </div>
 

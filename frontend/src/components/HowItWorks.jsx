@@ -6,14 +6,14 @@ const STEPS = [
   {
     n: "01",
     title: "Registra tu unidad",
-    desc: "Afíliate a Carrier Pro y activa tu membresía en minutos.",
+    desc: "Solo necesitamos el número de placa de tu unidad.",
     icon: FileSignature,
     visual: "form",
   },
   {
     n: "02",
-    title: "Obtén tu QR Carrier Pro",
-    desc: "Recibe tu identificación digital para acceder a los beneficios disponibles.",
+    title: "Recibe tu QR en 3 minutos",
+    desc: "Te enviamos tu QR por WhatsApp o correo. Es tu acceso al precio de convenio en cualquier estación Primax afiliada.",
     icon: QrCode,
     visual: "qr",
   },
@@ -41,7 +41,7 @@ export default function HowItWorks({ onActivar }) {
         <div className="max-w-3xl">
           <span className="section-label">Cómo funciona</span>
           <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[64px] leading-[0.98] tracking-tight">
-            Empieza a ahorrar <br /> en <span className="text-[#f5961d]">3 pasos.</span>
+            Empieza a ahorrar <br /> en <span className="text-[#f5961d]">3 pasos · 5 minutos.</span>
           </h2>
           <p className="mt-5 text-white/60 text-base sm:text-lg max-w-xl">
             Sin trámites complicados. Sin cambiar tu forma de cargar combustible.
