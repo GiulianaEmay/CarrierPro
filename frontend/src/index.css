@@ -26,7 +26,7 @@ body {
   padding: 0;
   background: var(--bg);
   color: var(--text);
-  font-family: "Geist", system-ui, -apple-system, sans-serif;
+  font-family: "Work Sans", system-ui, -apple-system, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
@@ -54,7 +54,7 @@ body {
 
 /* Typography helpers */
 .font-display {
-  font-family: "Bricolage Grotesque", system-ui, sans-serif;
+  font-family: "Baloo 2", system-ui, sans-serif;
   letter-spacing: -0.025em;
   font-weight: 700;
 }
@@ -69,11 +69,11 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#f5961d] px-7 py-4 text-sm sm:text-base font-semibold text-black transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-12px_rgba(245,150,29,0.6)] active:translate-y-0;
+    @apply font-mono inline-flex items-center justify-center gap-2 rounded-full bg-[#f5961d] px-7 py-4 text-sm sm:text-base font-semibold text-black transition-all duration-300 hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_18px_50px_-12px_rgba(245,150,29,0.6)] active:translate-y-0;
   }
 
   .btn-secondary {
-    @apply inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-sm sm:text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:-translate-y-0.5;
+    @apply font-mono inline-flex items-center justify-center gap-2 rounded-full border border-white/20 bg-white/5 px-7 py-4 text-sm sm:text-base font-semibold text-white backdrop-blur-md transition-all duration-300 hover:bg-white/10 hover:border-white/40 hover:-translate-y-0.5;
   }
 
   .chip {

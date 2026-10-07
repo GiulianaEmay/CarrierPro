@@ -19,7 +19,7 @@ const ITEMS = [
   { icon: Wrench, title: "Descuentos en talleres" },
   { icon: Shield, title: "Beneficios en seguros" },
   { icon: Users, title: "Red de transportistas Carrier Pro" },
-  { icon: Briefcase, title: "Gestión de viáticos" },
+  { icon: Briefcase, title: "Gestión de viáticos", status: "Lista para lanzamiento" },
   { icon: LayoutDashboard, title: "Dashboard operativo" },
 ];
 
@@ -34,17 +34,17 @@ export default function Future() {
 
       <div className="container-cp">
         <div className="text-center max-w-2xl mx-auto">
-          <span className="section-label">Roadmap</span>
+          <span className="section-label">Evolución del producto</span>
           <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[58px] leading-[1.0] tracking-tight">
             Más beneficios <br />
             en <span className="text-[#f5961d]">camino.</span>
           </h2>
           <p className="mt-5 text-white/60 text-base sm:text-lg">
-            Estamos construyendo la red operativa más completa para transportistas independientes del país.
+            El beneficio de combustible ya está disponible. Estas herramientas de gestión se presentan por separado: no se incluyen como funciones activas de los planes actuales.
           </p>
         </div>
 
-        <div className="mt-14 grid grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
+        <div className="mt-14 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4">
           {ITEMS.map((it, i) => {
             const Icon = it.icon;
             return (
@@ -59,12 +59,12 @@ export default function Future() {
               >
                 <div className="absolute inset-0 diag-lines opacity-30" />
                 <div className="relative">
-                  <div className="flex items-center justify-between">
+                  <div className="flex flex-wrap gap-2 items-center justify-between">
                     <div className="flex h-10 w-10 items-center justify-center rounded-xl border border-white/10 bg-black/40 text-white/60">
                       <Icon size={18} />
                     </div>
                     <span className="inline-flex items-center gap-1 rounded-full border border-[#f5961d]/30 bg-[#f5961d]/8 text-[#f5961d] px-2 py-0.5 text-[9px] font-mono uppercase tracking-[0.18em]">
-                      <Sparkles size={8} /> Soon
+                      <Sparkles size={8} /> {it.status || "Próximamente"}
                     </span>
                   </div>
                   <h3 className="mt-5 text-sm sm:text-base font-medium text-white/80 leading-snug">

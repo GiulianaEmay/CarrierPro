@@ -5,19 +5,19 @@ import { Wallet, Fuel, Receipt } from "lucide-react";
 const BLOCKS = [
   {
     icon: Wallet,
-    title: "No nos das tu dinero",
-    desc: "No depositas nada en Carrier Pro de combustibles. Nunca.",
+    title: "Tu combustible se paga en estación",
+    desc: "Carrier Pro gestiona tu membresía y acceso al beneficio. No recibe el dinero destinado al combustible.",
     tag: "Dinero",
   },
   {
     icon: Fuel,
-    title: "Pagas directamente en la estación",
-    desc: "Efectivo, tarjeta o Yape. Igual que siempre. Solo que más barato.",
+    title: "Pagas directamente en Primax",
+    desc: "Consulta los medios de pago aceptados en la estación habilitada.",
     tag: "Surtidor",
   },
   {
     icon: Receipt,
-    title: "La factura es tuya, no nuestra",
+    title: "Primax emite tu comprobante",
     desc: "Primax te factura a ti. Tu RUC. Tu comprobante. Sin intermediarios.",
     tag: "Factura",
   },
@@ -40,7 +40,7 @@ export default function Trust() {
               bajo tu control.
             </h2>
             <p className="mt-5 text-white/60 text-base sm:text-lg max-w-md">
-              No hay depósitos. No hay adelantos. No hay transferencias. Llegas a la estación, muestras tu QR, pagas en caja como siempre, y te vas con el precio de convenio.
+              El pago del combustible va directamente a Primax. Carrier Pro cobra la membresía por el acceso al beneficio. Presenta tu QR o tarjeta en las estaciones habilitadas.
             </p>
           </div>
 
@@ -95,9 +95,9 @@ export default function Trust() {
             >
               <div className="absolute -top-12 -right-12 h-44 w-44 rounded-full bg-[#f5961d]/15 blur-[80px]" />
               <div className="relative font-display text-xl sm:text-2xl lg:text-[28px] leading-snug tracking-tight">
-                <span className="text-white/55">No depositas.</span>{" "}
-                <span className="text-white/55">No adelantas.</span>{" "}
-                <span className="text-white/55">No transfieres.</span>
+                <span className="text-white/55">Tu combustible.</span>{" "}
+                <span className="text-white/55">Tu comprobante.</span>{" "}
+                <span className="text-white/55">Tu control.</span>
                 <br />
                 <span className="text-white">Cargas, pagas en caja</span>{" "}
                 <span className="text-[#f5961d]">y sigues tu ruta.</span>

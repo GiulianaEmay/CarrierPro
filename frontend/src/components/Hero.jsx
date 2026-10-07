@@ -44,11 +44,11 @@ export default function Hero({ onActivar }) {
               className="font-display mt-6 text-[44px] leading-[0.95] sm:text-6xl lg:text-[78px] lg:leading-[0.92] tracking-tight"
               data-testid="hero-headline"
             >
-              PAGA MENOS
+              AHORRA
               <br />
-              <span className="text-[#f5961d]">DESDE HOY</span>
+              <span className="text-[#f5961d]">DESDE TU</span>
               <br />
-              EN CADA CARGA.
+              PRIMERA CARGA.
             </motion.h1>
 
             <motion.p
@@ -58,9 +58,9 @@ export default function Hero({ onActivar }) {
               className="mt-6 max-w-xl text-base sm:text-lg text-white/70 leading-relaxed"
               data-testid="hero-subheadline"
             >
-              Carrier Pro consolida tu consumo junto al de cientos de transportistas y te da el precio costo. Sin intermediarios, sin anticipos, sin costos ocultos. Paga directo en la estación.{" "}
+              Una membresía por vehículo para acceder a mejores condiciones en combustible y a una red de beneficios que sigue creciendo.{" "}
               <span className="text-white">
-                Los beneficios de una gran flota. Sin ser una gran flota.
+                Combustible es solo el comienzo.
               </span>
             </motion.p>
 
@@ -121,7 +121,7 @@ export default function Hero({ onActivar }) {
               className="mt-10 flex items-center gap-3 text-xs text-white/40 font-mono uppercase tracking-[0.18em]"
             >
               <span className="inline-block h-1 w-1 rounded-full bg-[#f5961d]" />
-              <span>Trujillo · La Libertad · Próximamente nacional</span>
+              <span>Consulta las estaciones Primax habilitadas</span>
             </motion.div>
           </div>
 

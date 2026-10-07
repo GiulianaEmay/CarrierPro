@@ -10,8 +10,8 @@ module.exports = {
         },
       },
       fontFamily: {
-        display: ['"Bricolage Grotesque"', "system-ui", "sans-serif"],
-        body: ['"Geist"', "system-ui", "sans-serif"],
+        display: ['"Baloo 2"', "system-ui", "sans-serif"],
+        body: ['"Work Sans"', "system-ui", "sans-serif"],
         mono: ['"JetBrains Mono"', "monospace"],
       },
       opacity: {

@@ -22,7 +22,7 @@ export default function StationsMap() {
               <span className="text-[#f5961d]">afiliadas Primax.</span>
             </h2>
             <p className="mt-5 text-white/60 text-base sm:text-lg max-w-lg">
-              Estas son las estaciones donde puedes usar tu QR Carrier Pro y acceder al precio de convenio. Comenzamos en Trujillo y La Libertad, en expansión nacional.
+              Consulta las ciudades y estaciones habilitadas para acceder a tu beneficio Carrier Pro en Primax.
             </p>
           </div>
           <a

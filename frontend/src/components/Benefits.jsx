@@ -7,19 +7,17 @@ import {
   FileMinus,
   Car,
   Headphones,
-  QrCode,
   Sparkles,
 } from "lucide-react";
 
 const BENEFITS = [
-  { icon: Fuel, title: "Beneficios en combustible", desc: "Mejores condiciones en cada carga." },
-  { icon: Wallet, title: "Pago directo en estación", desc: "Tú pagas como siempre, en caja." },
-  { icon: CreditCard, title: "Sin tarjetas especiales", desc: "Sin plásticos extras. Solo tu QR." },
-  { icon: FileMinus, title: "Sin contratos largos", desc: "Flexibilidad total. Cancela cuando quieras." },
-  { icon: Car, title: "Membresía por unidad", desc: "Una membresía por cada vehículo." },
-  { icon: Headphones, title: "Soporte directo", desc: "Equipo Carrier Pro contigo a un mensaje." },
-  { icon: QrCode, title: "Acceso digital mediante QR", desc: "Tu identidad Carrier Pro en tu celular." },
-  { icon: Sparkles, title: "Proceso simple y transparente", desc: "Sin letras chicas. Sin sorpresas." },
+  { icon: Fuel, title: "Combustible", desc: "Accede al beneficio en estaciones Primax habilitadas.", status: "Disponible" },
+  { icon: Wallet, title: "Talleres", desc: "Nuevos aliados para tu vehículo.", status: "Próximo" },
+  { icon: Car, title: "Mantenimiento", desc: "Más opciones para cuidar tu operación.", status: "Próximo" },
+  { icon: CreditCard, title: "Neumáticos", desc: "Una red de beneficios que sigue creciendo.", status: "Próximo" },
+  { icon: FileMinus, title: "Autopartes", desc: "Nuevas posibilidades para tu vehículo.", status: "Próximo" },
+  { icon: Headphones, title: "Seguros", desc: "Beneficios en preparación.", status: "Próximo" },
+  { icon: Sparkles, title: "Otros servicios", desc: "Seguimos ampliando el ecosistema Carrier Pro.", status: "Próximo" },
 ];
 
 export default function Benefits() {
@@ -33,11 +31,10 @@ export default function Benefits() {
         <div className="max-w-3xl">
           <span className="section-label">Membresía</span>
           <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[58px] leading-[1.0] tracking-tight">
-            Todo lo que recibes con <br />
-            tu <span className="text-[#f5961d]">membresía.</span>
+            UNA MEMBRESÍA. <br /><span className="text-[#f5961d]">CADA VEZ MÁS BENEFICIOS.</span>
           </h2>
           <p className="mt-5 text-white/60 text-base sm:text-lg max-w-xl">
-            Beneficios pensados para transportistas independientes, con la simpleza que mereces.
+            El combustible es el comienzo. Los beneficios marcados como próximos aún no forman parte de la membresía activa.
           </p>
         </div>
 
@@ -55,7 +52,7 @@ export default function Benefits() {
                 data-testid={`benefit-${i}`}
               >
                 <div className="absolute top-5 right-5 font-mono text-[10px] uppercase tracking-[0.2em] text-white/20">
-                  {String(i + 1).padStart(2, "0")}
+                  {b.status}
                 </div>
                 <div className="flex h-12 w-12 items-center justify-center rounded-2xl border border-[#f5961d]/30 bg-[#f5961d]/10 text-[#f5961d] group-hover:bg-[#f5961d] group-hover:text-black transition-colors">
                   <Icon size={22} strokeWidth={1.8} />

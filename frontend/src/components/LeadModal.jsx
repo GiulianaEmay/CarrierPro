@@ -3,8 +3,11 @@ import { motion, AnimatePresence } from "framer-motion";
 import { X, ArrowRight, CheckCircle2, AlertCircle, Phone, User, Building2, Mail, Truck, MessageCircle } from "lucide-react";
 import { WHATSAPP_NUMBER } from "../App";
 
-export default function LeadModal({ open, onClose }) {
+export default function LeadModal({ open, onClose, selectedPlan = "" }) {
+  const [customerType, setCustomerType] = useState(selectedPlan === "Carrier Empresas" ? "empresa" : "personal");
+  const isCompany = customerType === "empresa";
   const [form, setForm] = useState({
+    placa: "",
     nombre: "",
     telefono: "",
     correo: "",
@@ -22,7 +25,7 @@ export default function LeadModal({ open, onClose }) {
       const t = setTimeout(() => {
         setError("");
         setSuccess(false);
-        setForm({ nombre: "", telefono: "", correo: "", empresa: "", unidades: 1 });
+        setForm({ placa: "", nombre: "", telefono: "", correo: "", empresa: "", unidades: 1 });
       }, 300);
       return () => clearTimeout(t);
     }
@@ -33,6 +36,7 @@ export default function LeadModal({ open, onClose }) {
 
   const onChange = (k) => (e) => {
     const v = k === "unidades" ? Math.max(1, parseInt(e.target.value || "1", 10)) : e.target.value;
+    if (k === "unidades" && v > 1 && customerType === "personal") setCustomerType("varias");
     setForm((f) => ({ ...f, [k]: v }));
   };
 
@@ -42,13 +46,12 @@ export default function LeadModal({ open, onClose }) {
     if (form.nombre.trim().length < 2) return setError("Ingresa tu nombre.");
     if (form.telefono.trim().length < 6) return setError("Ingresa un teléfono válido.");
     if (!form.unidades || form.unidades < 1) return setError("Indica el número de unidades.");
+    if (isCompany && !form.empresa.trim()) return setError("Ingresa el nombre de tu empresa.");
     setSuccess(true);
   };
 
   const waText = encodeURIComponent(
-    `Hola Carrier Pro, soy ${form.nombre || "[nombre]"}${
-      form.empresa ? ` de ${form.empresa}` : ""
-    }. Quiero activar ${form.unidades} unidad${form.unidades > 1 ? "es" : ""}. Mi teléfono: ${form.telefono}${form.correo ? `. Correo: ${form.correo}` : ""}`
+    `Hola Carrier Pro, soy ${form.nombre.trim()}. Quiero ${isCompany ? "solicitar Carrier Empresas" : "activar mi membresía"}. Plan: ${isCompany ? "Carrier Empresas" : selectedPlan && selectedPlan !== "Carrier Empresas" ? selectedPlan : "por elegir"}. Tipo: ${isCompany ? "Empresa" : customerType === "varias" ? "Varias unidades" : "1 unidad / uso personal"}. Unidades${isCompany ? " aproximadas" : ""}: ${form.unidades}.${form.placa.trim() ? ` Placa: ${form.placa.trim().toUpperCase()}.` : " Les enviaré mi placa para continuar."}${form.empresa.trim() ? ` Empresa: ${form.empresa.trim()}.` : ""} Teléfono: ${form.telefono.trim()}.${form.correo.trim() ? ` Correo: ${form.correo.trim()}.` : ""}`
   );
   const waSuccessUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${waText}`;
 
@@ -73,7 +76,8 @@ export default function LeadModal({ open, onClose }) {
             animate={{ y: 0, opacity: 1, scale: 1 }}
             exit={{ y: 30, opacity: 0, scale: 0.98 }}
             transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-            className="relative w-full sm:max-w-lg bg-[#0a0a0a] border border-white/10 sm:rounded-3xl rounded-t-3xl shadow-2xl overflow-hidden"
+            role="dialog" aria-modal="true" aria-labelledby="lead-title"
+            className="relative max-h-[90svh] overflow-y-auto w-full sm:max-w-lg bg-[#0a0a0a] border border-white/10 sm:rounded-3xl rounded-t-3xl shadow-2xl"
           >
             <div className="absolute -top-32 -right-32 h-72 w-72 rounded-full bg-[#f5961d]/20 blur-[100px] pointer-events-none" />
 
@@ -89,22 +93,29 @@ export default function LeadModal({ open, onClose }) {
             {!success ? (
               <div className="relative p-6 sm:p-8">
                 <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#f5961d]">
-                  Afiliación · 1 minuto
+                  {isCompany ? "Carrier Empresas" : selectedPlan || "Tu membresía"}
                 </div>
-                <h3 className="font-display mt-2 text-2xl sm:text-3xl leading-tight">
-                  Activa tu unidad <br />
+                <h3 id="lead-title" className="font-display mt-2 text-2xl sm:text-3xl leading-tight">
+                  {isCompany ? "Conversemos sobre tu flota" : "Activa tu membresía"} <br />
                   <span className="text-[#f5961d]">en Carrier Pro.</span>
                 </h3>
                 <p className="mt-2 text-sm text-white/60">
-                  Te contactamos por WhatsApp para confirmar tu activación.
+                  Comparte tus datos y continúa por WhatsApp para coordinar tu membresía.
                 </p>
 
                 <form onSubmit={submit} className="mt-6 space-y-3.5" data-testid="lead-form">
+                  <label className="block text-sm text-white/70" htmlFor="lead-type">¿Para quién es la membresía?</label>
+                  <select id="lead-type" data-testid="lead-type" value={customerType} onChange={e => { setCustomerType(e.target.value); if (e.target.value === "personal") setForm(f => ({ ...f, unidades: 1 })); }} className="w-full rounded-xl border border-white/20 bg-[#111] px-3 py-3 text-white">
+                    <option value="personal">1 unidad / uso personal</option>
+                    <option value="varias">Varias unidades</option>
+                    <option value="empresa">Empresa</option>
+                  </select>
+                  <Field label="Placa (opcional para iniciar)" icon={Truck} name="placa" placeholder="ABC-123" maxLength={20} value={form.placa} onChange={onChange("placa")} />
                   <Field label="Nombre" icon={User} name="nombre" placeholder="Tu nombre completo" value={form.nombre} onChange={onChange("nombre")} required />
                   <Field label="Teléfono" icon={Phone} name="telefono" type="tel" placeholder="+51 9xx xxx xxx" value={form.telefono} onChange={onChange("telefono")} required />
                   <div className="grid grid-cols-2 gap-3">
-                    <Field label="Unidades" icon={Truck} name="unidades" type="number" min={1} value={form.unidades} onChange={onChange("unidades")} required />
-                    <Field label="Empresa (opcional)" icon={Building2} name="empresa" placeholder="Razón social" value={form.empresa} onChange={onChange("empresa")} />
+                    <Field label={isCompany ? "Unidades aproximadas" : "Unidades"} icon={Truck} name="unidades" type="number" min={1} value={form.unidades} onChange={onChange("unidades")} required />
+                    <Field label={isCompany ? "Empresa" : "Empresa (opcional)"} required={isCompany} icon={Building2} name="empresa" placeholder="Razón social" value={form.empresa} onChange={onChange("empresa")} />
                   </div>
                   <Field label="Correo (opcional)" icon={Mail} name="correo" type="email" placeholder="correo@ejemplo.com" value={form.correo} onChange={onChange("correo")} />
 
@@ -115,12 +126,12 @@ export default function LeadModal({ open, onClose }) {
                   )}
 
                   <button type="submit" className="btn-primary w-full" data-testid="lead-submit">
-                    QUIERO ACTIVAR MI UNIDAD
+                    CONTINUAR
                     <ArrowRight size={18} />
                   </button>
 
                   <div className="text-center text-[11px] text-white/40 mt-1 font-mono uppercase tracking-wider">
-                    Tu información está protegida
+                    Tus datos se incluirán en el mensaje de WhatsApp
                   </div>
                 </form>
               </div>
@@ -138,7 +149,7 @@ export default function LeadModal({ open, onClose }) {
                   ¡Listo {form.nombre.split(" ")[0]}!
                 </h3>
                 <p className="mt-3 text-white/70 max-w-sm mx-auto">
-                  Continúa por WhatsApp para activar tu unidad ahora mismo. Te llevaremos con un mensaje pre-rellenado.
+                  Continúa por WhatsApp para {isCompany ? "consultar las condiciones corporativas" : "coordinar el pago y activar tu membresía"}. Tu solicitud aún no se ha enviado.
                 </p>
                 <a
                   href={waSuccessUrl}
@@ -176,7 +187,7 @@ function Field({ label, icon: Icon, name, ...rest }) {
           id={`lead-${name}`}
           name={name}
           data-testid={`lead-input-${name}`}
-          className="flex-1 bg-transparent text-white placeholder:text-white/30 outline-none text-sm"
+          className="min-w-0 w-full flex-1 bg-transparent text-white placeholder:text-white/30 outline-none text-sm"
           {...rest}
         />
       </div>

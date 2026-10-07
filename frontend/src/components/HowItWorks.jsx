@@ -5,22 +5,22 @@ import { FileSignature, QrCode, ScanLine, ArrowRight, Sparkles } from "lucide-re
 const STEPS = [
   {
     n: "01",
-    title: "Registra tu unidad",
-    desc: "Solo necesitamos el número de placa de tu unidad.",
+    title: "Registra tu placa",
+    desc: "Comparte tu placa y teléfono. RUC cuando sea necesario para el comprobante correspondiente.",
     icon: FileSignature,
     visual: "form",
   },
   {
     n: "02",
-    title: "Recibe tu QR en 3 minutos",
-    desc: "Te enviamos tu QR por WhatsApp o correo. Es tu acceso al precio de convenio en cualquier estación Primax afiliada.",
+    title: "Activa tu membresía",
+    desc: "Recibe tu QR aproximadamente 5 minutos después de confirmar el pago. Fleet Óptimo agrega tarjeta física con entrega programada.",
     icon: QrCode,
     visual: "qr",
   },
   {
     n: "03",
     title: "Carga combustible y paga directo en caja",
-    desc: "Presenta tu QR, realiza tu pago habitual y accede a tu beneficio.",
+    desc: "Presenta tu QR o tarjeta, carga y paga directamente en una estación Primax habilitada.",
     icon: ScanLine,
     visual: "scan",
   },
@@ -41,10 +41,10 @@ export default function HowItWorks({ onActivar }) {
         <div className="max-w-3xl">
           <span className="section-label">Cómo funciona</span>
           <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[64px] leading-[0.98] tracking-tight">
-            Empieza a ahorrar <br /> en <span className="text-[#f5961d]">3 pasos · 5 minutos.</span>
+            Empieza a ahorrar <br /> en <span className="text-[#f5961d]">3 pasos.</span>
           </h2>
           <p className="mt-5 text-white/60 text-base sm:text-lg max-w-xl">
-            Sin trámites complicados. Sin cambiar tu forma de cargar combustible.
+            PLACA → MEMBRESÍA → QR / TARJETA → BENEFICIO
           </p>
         </div>
 
@@ -90,7 +90,7 @@ export default function HowItWorks({ onActivar }) {
 
             <div className="relative rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-6 sm:p-8">
               <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-                Tarjeta Carrier Pro
+                Digital: QR · Fleet Óptimo: QR + tarjeta
               </div>
               <div className="mt-4 space-y-2.5">
                 {[

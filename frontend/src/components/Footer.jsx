@@ -19,6 +19,7 @@ export default function Footer() {
             <li><a href="#estaciones" className="hover:text-white">Estaciones</a></li>
             <li><a href="#beneficios" className="hover:text-white">Beneficios</a></li>
             <li><a href="#planes" className="hover:text-white">Planes</a></li>
+            <li><a href="#empresas" className="hover:text-white">Carrier Empresas</a></li>
             <li><a href="#faq" className="hover:text-white">FAQ</a></li>
           </ul>
         </div>
@@ -27,7 +28,7 @@ export default function Footer() {
           <ul className="mt-3 space-y-2 text-sm text-white/70">
             <li>
               <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="hover:text-[#f5961d]">
-                WhatsApp: +51 916 776 302
+                WhatsApp: +51 973 982 417
               </a>
             </li>
             <li>Trujillo · La Libertad · Perú</li>
