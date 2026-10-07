@@ -7,7 +7,7 @@ import StationsMap from "./components/StationsMap";
 import Benefits from "./components/Benefits";
 import Plans from "./components/Plans";
 import Future from "./components/Future";
-import Testimonials from "./components/Testimonials";
+import CorporateModal from "./components/CorporateModal";
 import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
@@ -20,6 +20,7 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
 )}`;
 
 export default function App() {
+  const [corporateType, setCorporateType] = useState(null);
   const [leadOpen, setLeadOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("");
 
@@ -49,11 +50,11 @@ export default function App() {
         <Benefits />
         <Plans onActivar={openLead} />
         <Future />
-        <Testimonials />
         <FAQ />
         <FinalCTA onActivar={openLead} />
       </main>
-      <Footer />
+      <Footer onOpenCorporate={setCorporateType} />
+      {corporateType && <CorporateModal key={corporateType} type={corporateType} onClose={() => setCorporateType(null)} />}
       <StickyWhatsApp />
       <LeadModal key={String(leadOpen) + selectedPlan} selectedPlan={selectedPlan} open={leadOpen} onClose={() => setLeadOpen(false)} />
     </div>

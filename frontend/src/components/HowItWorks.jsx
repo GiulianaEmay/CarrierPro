@@ -1,6 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { FileSignature, QrCode, ScanLine, ArrowRight, Sparkles } from "lucide-react";
+import { FileSignature, QrCode, ScanLine, ArrowRight } from "lucide-react";
 
 const STEPS = [
   {
@@ -60,57 +60,9 @@ export default function HowItWorks({ onActivar }) {
           </div>
         </div>
 
-        {/* Result */}
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-80px" }}
-          transition={{ duration: 0.7 }}
-          className="mt-16 sm:mt-24 relative overflow-hidden rounded-[28px] border border-[#f5961d]/30 bg-gradient-to-br from-[#f5961d]/[0.12] via-black to-black p-8 sm:p-12"
-          data-testid="howitworks-result"
-        >
-          <div className="absolute -top-24 -right-24 h-72 w-72 rounded-full bg-[#f5961d]/20 blur-[100px]" />
-          <div className="relative grid lg:grid-cols-[1.2fr_1fr] gap-10 items-center">
-            <div>
-              <div className="inline-flex items-center gap-2 text-[#f5961d] font-mono text-xs uppercase tracking-[0.2em]">
-                <Sparkles size={14} /> Resultado final
-              </div>
-              <h3 className="font-display mt-3 text-3xl sm:text-4xl lg:text-5xl leading-tight">
-                Empieza a ahorrar <br /> desde tu <span className="text-[#f5961d]">primera carga.</span>
-              </h3>
-              <button
-                onClick={onActivar}
-                className="btn-primary mt-7"
-                data-testid="howitworks-cta"
-              >
-                ACTIVAR MI UNIDAD
-                <ArrowRight size={18} />
-              </button>
-            </div>
-
-            <div className="relative rounded-2xl border border-white/10 bg-black/40 backdrop-blur-md p-6 sm:p-8">
-              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-                Digital: QR · Fleet Óptimo: QR + tarjeta
-              </div>
-              <div className="mt-4 space-y-2.5">
-                {[
-                  ["Tu combustible.", "text-white"],
-                  ["Tu factura.", "text-white"],
-                  ["Tu dinero.", "text-white"],
-                  ["Ahora con mejores condiciones.", "text-[#f5961d]"],
-                ].map(([t, c]) => (
-                  <div key={t} className={`font-display text-2xl sm:text-3xl ${c}`}>
-                    {t}
-                  </div>
-                ))}
-              </div>
-              <div className="mt-6 flex items-center justify-between text-xs font-mono text-white/40 uppercase tracking-wider">
-                <span>Carrier · Pro</span>
-                <span>Activo</span>
-              </div>
-            </div>
-          </div>
-        </motion.div>
+        <button onClick={onActivar} className="btn-primary mt-12" data-testid="howitworks-cta">
+          ACTIVAR MI MEMBRESÍA <ArrowRight size={18} />
+        </button>
       </div>
     </section>
   );
