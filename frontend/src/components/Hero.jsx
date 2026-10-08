@@ -58,7 +58,7 @@ export default function Hero({ onActivar }) {
               className="mt-6 max-w-xl text-base sm:text-lg text-white/70 leading-relaxed"
               data-testid="hero-subheadline"
             >
-              Una membresía por vehículo para acceder a mejores condiciones en combustible y a una red de beneficios que sigue creciendo.{" "}
+              Carrier Pro es una membresía por vehículo para transportistas, flotas y empresas: accede a mejores condiciones en combustible y a una red de beneficios que sigue creciendo.{" "}
               <span className="text-white">
                 Combustible es solo el comienzo.
               </span>
