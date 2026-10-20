@@ -11,3 +11,10 @@ export const STATS = [
   { value: 200, prefix: "+", label: "Estaciones afiliadas" },
   { value: 15, prefix: "+", label: "Ciudades del norte" },
 ];
+
+// Edita aquí la comparativa de precios del mapa (S/ por galón)
+export const FUEL_PRICE = {
+  pizarra: 27.99,
+  carrier: 24.94,
+  actualizado: "20/10/2026",
+};

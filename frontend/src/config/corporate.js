@@ -11,9 +11,9 @@ export const SOCIAL_LINKS = {
 
 // Replace null only after the corresponding official document/service exists.
 export const LEGAL_LINKS = [
-  { label: "Términos y condiciones", href: null },
-  { label: "Política de privacidad", href: null },
-  { label: "Libro de reclamaciones", href: null },
+  { label: "Términos y condiciones", href: "/terminos" },
+  { label: "Política de privacidad", href: "/privacidad" },
+  { label: "Libro de reclamaciones", href: "/libro-de-reclamaciones" },
 ];
 
 export const INTEREST_AREAS = ["Comercial", "Operaciones", "Tecnología", "Atención al cliente", "Marketing", "Alianzas"];

@@ -1,5 +1,6 @@
 import React from "react";
-import { ExternalLink, MapPin, Navigation } from "lucide-react";
+import { ExternalLink, MapPin, Navigation, ArrowRight, TrendingDown } from "lucide-react";
+import { FUEL_PRICE } from "../config/site";
 
 const MAPS_LIST_URL =
   "https://www.google.com/maps/d/edit?mid=136EwYhSwDgYk99e5VftSFBw0Lgmcsco&usp=sharing";
@@ -36,6 +37,8 @@ export default function StationsMap() {
             <ExternalLink size={16} />
           </a>
         </div>
+
+        <PriceBoard />
 
         {/* Map */}
         <div
@@ -82,5 +85,32 @@ export default function StationsMap() {
         </div>
       </div>
     </section>
+  );
+}
+
+function PriceBoard() {
+  const { pizarra, carrier, actualizado } = FUEL_PRICE;
+  const ahorro = (pizarra - carrier).toFixed(2);
+  return (
+    <div className="mt-10 grid overflow-hidden rounded-[28px] border border-white/10 bg-[#0a0a0a] sm:grid-cols-[1fr_auto_1fr_1fr]" data-testid="price-board">
+      <div className="p-6 sm:p-7">
+        <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">Precio pizarra Primax</div>
+        <div className="mt-2 font-display text-4xl text-white/40 line-through decoration-[#f5961d]/70 tabular-nums" data-testid="price-pizarra">S/ {pizarra.toFixed(2)}</div>
+        <div className="mt-1 text-xs text-white/40">por galón</div>
+      </div>
+      <div className="hidden items-center justify-center sm:flex">
+        <span className="inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#f5961d]/50 text-[#f5961d]"><ArrowRight size={18} /></span>
+      </div>
+      <div className="border-t border-white/10 p-6 sm:border-t-0 sm:p-7">
+        <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#f5961d]">Precio Carrier Pro</div>
+        <div className="mt-2 font-display text-5xl text-white tabular-nums" data-testid="price-carrier">S/ {carrier.toFixed(2)}</div>
+        <div className="mt-1 text-xs text-white/40">por galón · actualizado {actualizado}</div>
+      </div>
+      <div className="flex flex-col justify-center bg-[#f5961d] p-6 text-black sm:p-7">
+        <div className="flex items-center gap-2 font-mono text-[10px] uppercase tracking-[0.22em] text-black/65"><TrendingDown size={14} /> Tu ahorro</div>
+        <div className="mt-2 font-display text-5xl tabular-nums" data-testid="price-ahorro">S/ {ahorro}</div>
+        <div className="mt-1 text-xs text-black/65">menos en cada galón</div>
+      </div>
+    </div>
   );
 }
