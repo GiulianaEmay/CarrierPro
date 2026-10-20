@@ -85,6 +85,6 @@ Crear una landing page premium, moderna, mobile-first y altamente optimizada par
 
 ## 2026-06 Update 3
 - "Calculadora" link in navbar (desktop + mobile) and footer.
-- StatsStrip between Hero and Trust: animated counters (+120 unidades, +8 estaciones, 3 ciudades) editable in config.js STATS (example values).
+- StatsStrip between Hero and Trust: animated counters (+120 unidades, +200 estaciones, +15 ciudades del norte) editable in config.js STATS.
 - Calculator "Compartir con un colega" button: wa.me/?text= with savings + site link.
 - Skipped by user: email backup, video testimonials.

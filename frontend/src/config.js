@@ -8,6 +8,6 @@ export const GALLONS_DEFAULT = 800;
 // Edita aquí las cifras de la franja de confianza
 export const STATS = [
   { value: 120, prefix: "+", label: "Unidades afiliadas" },
-  { value: 8, prefix: "+", label: "Estaciones afiliadas" },
-  { value: 3, prefix: "", label: "Ciudades" },
+  { value: 200, prefix: "+", label: "Estaciones afiliadas" },
+  { value: 15, prefix: "+", label: "Ciudades del norte" },
 ];
