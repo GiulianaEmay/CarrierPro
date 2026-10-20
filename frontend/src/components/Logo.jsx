@@ -1,8 +1,8 @@
 import React from "react";
 
-export const Logo = ({ className = "h-12 sm:h-14" }) => (
+export const Logo = ({ className = "h-8 sm:h-9" }) => (
   <img
-    src="/logo.png"
+    src="/logo-wordmark.png"
     alt="Carrier Pro"
     className={`${className} w-auto select-none object-contain`}
     draggable={false}

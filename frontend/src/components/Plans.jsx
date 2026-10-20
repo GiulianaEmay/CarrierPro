@@ -126,7 +126,7 @@ export default function Plans({ onActivar }) {
     <section
       id="planes"
       data-testid="plans-section"
-      className="relative py-24 sm:py-32 border-t border-white/10 overflow-hidden"
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/10 overflow-hidden"
     >
       <div className="absolute top-20 left-1/2 -translate-x-1/2 -z-10 h-[500px] w-[1000px] rounded-full bg-[#f5961d]/10 blur-[180px]" />
 

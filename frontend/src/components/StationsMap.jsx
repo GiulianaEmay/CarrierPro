@@ -11,7 +11,7 @@ export default function StationsMap() {
     <section
       id="estaciones"
       data-testid="stations-section"
-      className="relative py-24 sm:py-32 border-t border-white/10"
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/10"
     >
       <div className="container-cp">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">

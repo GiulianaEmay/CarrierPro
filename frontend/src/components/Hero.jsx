@@ -15,7 +15,7 @@ export default function Hero({ onActivar }) {
     <section
       id="top"
       data-testid="hero-section"
-      className="relative isolate min-h-[100svh] pt-28 sm:pt-32 pb-16 overflow-hidden"
+      className="relative isolate min-h-[100svh] pt-32 sm:pt-40 lg:pt-44 pb-20 sm:pb-24 overflow-hidden"
     >
       {/* Background layers */}
       <div className="absolute inset-0 -z-10 dots-bg opacity-60" />
@@ -55,7 +55,7 @@ export default function Hero({ onActivar }) {
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.15 }}
-              className="mt-6 max-w-xl text-base sm:text-lg text-white/70 leading-relaxed"
+              className="mt-8 max-w-xl text-base sm:text-lg text-white/65 leading-[1.7]"
               data-testid="hero-subheadline"
             >
               Carrier Pro consolida tu consumo junto al de cientos de transportistas y te da el precio costo. Sin intermediarios, sin anticipos, sin costos ocultos. Paga directo en la estación.{" "}

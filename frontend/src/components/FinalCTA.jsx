@@ -8,7 +8,7 @@ export default function FinalCTA({ onActivar }) {
     <section
       id="cta-final"
       data-testid="final-cta-section"
-      className="relative py-28 sm:py-36 border-t border-white/5 overflow-hidden"
+      className="relative py-28 sm:py-36 lg:py-44 border-t border-white/5 overflow-hidden"
     >
       {/* Background */}
       <div className="absolute inset-0 -z-10 bg-gradient-to-b from-black via-black to-[#0a0a0a]" />

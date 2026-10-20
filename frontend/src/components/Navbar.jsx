@@ -36,7 +36,7 @@ export default function Navbar({ onActivar }) {
           <Logo />
         </a>
 
-        <nav className="hidden md:flex items-center gap-9" aria-label="Principal">
+        <nav className="hidden md:flex items-center gap-8 rounded-full border border-white/10 bg-white/[0.03] px-7 py-2.5 backdrop-blur-md" aria-label="Principal">
           {links.map((l) => (
             <a
               key={l.href}

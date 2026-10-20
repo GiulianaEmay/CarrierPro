@@ -27,7 +27,7 @@ export default function Benefits() {
     <section
       id="beneficios"
       data-testid="benefits-section"
-      className="relative py-24 sm:py-32 border-t border-white/5"
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5"
     >
       <div className="container-cp">
         <div className="max-w-3xl">

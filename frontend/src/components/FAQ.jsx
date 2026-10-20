@@ -36,7 +36,7 @@ export default function FAQ() {
     <section
       id="faq"
       data-testid="faq-section"
-      className="relative py-24 sm:py-32 border-t border-white/5"
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5"
     >
       <div className="container-cp grid lg:grid-cols-[0.9fr_1.2fr] gap-12 lg:gap-20 items-start">
         <div className="lg:sticky lg:top-28">

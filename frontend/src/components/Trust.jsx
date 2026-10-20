@@ -28,7 +28,7 @@ export default function Trust() {
     <section
       id="confianza"
       data-testid="trust-section"
-      className="relative py-24 sm:py-32 border-t border-white/5"
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5"
     >
       <div className="container-cp">
         <div className="grid lg:grid-cols-[0.9fr_1.3fr] gap-12 lg:gap-20 items-start">

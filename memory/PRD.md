@@ -72,3 +72,9 @@ Crear una landing page premium, moderna, mobile-first y altamente optimizada par
 - Sin uso de imágenes locales (todo Unsplash) — fácil de reemplazar.
 - Sin API key de Google Maps requerida (iframe público).
 - Mongo storage: documentos con `id` UUID + `created_at` ISO UTC.
+
+## 2026-06 Update (static Netlify SPA, no backend)
+- Visual polish: wider container (1240px), more section spacing (lg:py-40), balanced headings, refined labels/cards, navbar pill nav.
+- Logo cropped to wordmark (/public/logo-wordmark.png) for larger, crisper rendering.
+- Footer: 4 columns, social links (IG carrier.pro, FB id=61592701653158, X ProCarrierFleet), copyright "Derechos de autor Emay Tech" + "Diseñado y construido por la increíble gente de Emay 💜".
+- Backlog P1: Email lead capture backup (Web3Forms/Formspree).

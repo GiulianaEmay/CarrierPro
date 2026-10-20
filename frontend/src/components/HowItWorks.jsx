@@ -31,7 +31,7 @@ export default function HowItWorks({ onActivar }) {
     <section
       id="como-funciona"
       data-testid="howitworks-section"
-      className="relative py-24 sm:py-32 border-t border-white/5 overflow-hidden"
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5 overflow-hidden"
     >
       {/* Background subtle pattern */}
       <div className="absolute inset-0 -z-10 diag-lines opacity-50" />

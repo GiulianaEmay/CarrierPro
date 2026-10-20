@@ -28,7 +28,7 @@ export default function Future() {
     <section
       id="futuro"
       data-testid="future-section"
-      className="relative py-24 sm:py-32 border-t border-white/5 overflow-hidden"
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5 overflow-hidden"
     >
       <div className="absolute top-0 left-1/2 -translate-x-1/2 h-[400px] w-[800px] rounded-full bg-[#f5961d]/8 blur-[140px] -z-10" />
 
