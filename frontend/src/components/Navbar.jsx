@@ -7,6 +7,7 @@ const links = [
   { label: "Cómo funciona", href: "#como-funciona" },
   { label: "Estaciones", href: "#estaciones" },
   { label: "Beneficios", href: "#beneficios" },
+  { label: "Calculadora", href: "#calculadora" },
   { label: "Planes", href: "#planes" },
   { label: "FAQ", href: "#faq" },
 ];
@@ -81,7 +82,7 @@ export default function Navbar({ onActivar }) {
       {/* Mobile menu */}
       <div
         className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${
-          open ? "max-h-[420px] opacity-100" : "max-h-0 opacity-0"
+          open ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
         <div className="container-cp pb-6 pt-2 flex flex-col gap-1 border-t border-white/10 bg-black/90 backdrop-blur-xl">
@@ -90,6 +91,7 @@ export default function Navbar({ onActivar }) {
               key={l.href}
               href={l.href}
               onClick={() => setOpen(false)}
+              data-testid={`nav-mobile-link-${l.href.replace("#", "")}`}
               className="py-3 text-base text-white/80"
             >
               {l.label}

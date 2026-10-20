@@ -19,6 +19,7 @@ const SECTIONS = [
   ["#como-funciona", "Cómo funciona"],
   ["#estaciones", "Estaciones"],
   ["#beneficios", "Beneficios"],
+  ["#calculadora", "Calculadora"],
   ["#planes", "Planes"],
   ["#faq", "FAQ"],
 ];
