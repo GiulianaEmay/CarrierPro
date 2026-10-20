@@ -159,7 +159,7 @@ export default function Plans({ onActivar }) {
         </div>
 
         {/* Plan cards */}
-        <div className="mt-10 grid lg:grid-cols-3 gap-5 sm:gap-6 items-stretch">
+        <div className="mt-16 grid lg:grid-cols-3 gap-6 lg:gap-5 items-stretch">
           {PLANS.map((p, i) => (
             <PlanCard
               key={p.id}
@@ -204,133 +204,83 @@ function PlanCard({ plan, index, isHighlighted, onHover, onActivar }) {
       viewport={{ once: true, margin: "-60px" }}
       transition={{ duration: 0.55, delay: index * 0.08 }}
       onMouseEnter={onHover}
-      className={`relative rounded-[28px] flex flex-col h-full transition-all duration-500 ${
+      className={`group relative flex h-full flex-col rounded-[32px] p-2 transition-[transform,box-shadow,border-color] duration-500 ${
         accent
-          ? "border border-[#f5961d]/50 bg-gradient-to-b from-[#f5961d]/[0.12] via-black to-black shadow-[0_30px_80px_-30px_rgba(245,150,29,0.5)] lg:scale-[1.03] lg:-translate-y-2"
-          : "border border-white/10 bg-white/[0.025] hover:border-white/20"
+          ? "border border-[#f5961d]/60 bg-[#0d0904] shadow-[0_40px_100px_-40px_rgba(245,150,29,0.65)] lg:-translate-y-3"
+          : `border bg-white/[0.02] ${isHighlighted ? "border-white/25" : "border-white/10"}`
       }`}
       data-testid={`plan-card-${plan.id}`}
     >
-      {/* Badge */}
-      {accent && (
-        <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 inline-flex items-center gap-1.5 rounded-full bg-[#f5961d] text-black px-3.5 py-1.5 text-[10px] font-mono uppercase tracking-[0.2em] shadow-lg shadow-[#f5961d]/30">
-          <Sparkles size={11} strokeWidth={2.5} /> {plan.tag}
-        </div>
-      )}
-
-      <div className="p-7 sm:p-8 flex flex-col h-full">
-        {/* Header */}
-        <div className="flex items-start justify-between gap-3">
-          <div className="flex items-center gap-3">
-            <div
-              className={`inline-flex h-11 w-11 items-center justify-center rounded-xl ${
-                accent
-                  ? "bg-[#f5961d] text-black"
-                  : "border border-white/15 bg-white/5 text-[#f5961d]"
-              }`}
-            >
-              <Icon size={20} strokeWidth={1.8} />
-            </div>
-            <div>
-              <div className="text-[10px] font-mono uppercase tracking-[0.22em] text-white/40">
-                Plan
-              </div>
-              <h3 className="font-display text-2xl leading-none mt-1">{plan.nombre}</h3>
-            </div>
+      <div
+        className={`relative overflow-hidden rounded-[26px] p-6 sm:p-7 ${
+          accent ? "bg-[#f5961d] text-black" : "border border-white/[0.06] bg-[#0b0b0b] text-white"
+        }`}
+      >
+        <div className={`absolute inset-0 ${accent ? "diag-lines-dark opacity-[0.08]" : "dots-bg opacity-60"}`} />
+        <div className="relative flex flex-wrap items-center justify-between gap-3">
+          <div className="flex items-center gap-2.5">
+            <span className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${accent ? "bg-black text-[#f5961d]" : "bg-[#f5961d]/15 text-[#f5961d]"}`}>
+              <Icon size={17} strokeWidth={2} />
+            </span>
+            <h3 className="font-display text-xl leading-none whitespace-nowrap">{plan.nombre}</h3>
           </div>
-          {!accent && (
-            <span className="text-[10px] font-mono uppercase tracking-[0.2em] rounded-full border border-white/15 px-2.5 py-1 text-white/55">
-              {plan.tag}
-            </span>
-          )}
-        </div>
-
-        {/* Tagline */}
-        <p className="mt-5 font-display text-xl sm:text-2xl leading-snug">
-          {plan.tagline}
-        </p>
-
-        {/* Price */}
-        <div className="mt-5 flex items-baseline gap-2">
-          <span className="text-white/50 text-base">S/</span>
-          <span className="font-display text-[64px] sm:text-[72px] leading-none tracking-tight">
-            {plan.precio}
+          <span className={`inline-flex shrink-0 whitespace-nowrap items-center gap-1 rounded-full px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.2em] ${accent ? "bg-black text-[#f5961d]" : "border border-white/15 text-white/55"}`}>
+            {accent && <Sparkles size={10} />} {plan.tag}
           </span>
-          <span className="text-white/50 text-sm">/ unidad · mes</span>
         </div>
+        <div className="relative mt-8 flex items-start gap-1.5">
+          <span className={`mt-3 text-lg font-semibold ${accent ? "text-black/60" : "text-white/45"}`}>S/</span>
+          <span className="font-display text-[84px] sm:text-[96px] leading-[0.85] tabular-nums" data-testid={`plan-price-${plan.id}`}>{plan.precio}</span>
+          <span className={`mt-auto mb-2 text-xs font-mono uppercase tracking-[0.16em] ${accent ? "text-black/60" : "text-white/45"}`}>/ unidad<br />/ mes</span>
+        </div>
+        <p className={`relative mt-6 font-display text-lg leading-snug ${accent ? "text-black" : "text-white/90"}`}>{plan.tagline}</p>
+      </div>
 
-        <p className="mt-3 text-sm text-white/55 leading-relaxed min-h-[60px]">
-          {plan.descripcion}
-        </p>
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-6 sm:px-6">
+        <p className="text-sm leading-relaxed text-white/55 lg:min-h-[66px]">{plan.descripcion}</p>
 
-        {/* Includes previous */}
         {plan.incluyeAnterior && (
-          <div
-            className={`mt-5 inline-flex items-center gap-2 rounded-full border px-3.5 py-2 text-xs font-medium self-start ${
-              accent
-                ? "border-[#f5961d]/40 bg-[#f5961d]/10 text-[#f5961d]"
-                : "border-white/15 bg-white/5 text-white/75"
-            }`}
-          >
+          <div className={`mt-5 inline-flex items-center gap-2 self-start rounded-full border px-3.5 py-2 text-xs font-medium ${accent ? "border-[#f5961d]/40 bg-[#f5961d]/10 text-[#f5961d]" : "border-white/15 bg-white/5 text-white/75"}`}>
             <Plus size={13} strokeWidth={2.5} />
-            Todo lo del plan{" "}
-            <span className={accent ? "font-bold" : "font-semibold text-white"}>
-              {plan.incluyeAnterior}
-            </span>
+            Todo lo del plan <span className="font-semibold">{plan.incluyeAnterior}</span>
           </div>
         )}
 
-        <div className="my-6 h-px bg-gradient-to-r from-transparent via-white/10 to-transparent" />
-
-        {/* Grouped benefits */}
-        <div className="space-y-6 flex-1">
+        <div className="mt-7 flex-1 space-y-7">
           {plan.groups.map((g) => (
             <div key={g.title}>
-              <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45 mb-3">
+              <div className="mb-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
                 {g.title}
+                <span className="h-px flex-1 bg-white/10" />
               </div>
-              <ul className="space-y-3">
-                {g.items.map((it) => {
-                  const ItIcon = it.icon;
-                  return (
-                    <li key={it.t} className="flex items-start gap-3">
-                      <span
-                        className={`mt-0.5 inline-flex h-8 w-8 shrink-0 items-center justify-center rounded-lg ${
-                          accent
-                            ? "bg-[#f5961d]/15 border border-[#f5961d]/30 text-[#f5961d]"
-                            : "bg-white/5 border border-white/10 text-white/70"
-                        }`}
-                      >
-                        <ItIcon size={14} strokeWidth={1.8} />
-                      </span>
-                      <div className="flex-1 min-w-0">
-                        <div className="text-sm font-medium text-white leading-tight">
-                          {it.t}
-                        </div>
-                        <div className="text-xs text-white/55 mt-0.5 leading-snug">
-                          {it.s}
-                        </div>
-                      </div>
-                    </li>
-                  );
-                })}
+              <ul className="space-y-3.5">
+                {g.items.map((it) => (
+                  <li key={it.t} className="flex items-start gap-3">
+                    <span className={`mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${accent ? "bg-[#f5961d] text-black" : "bg-white/10 text-[#f5961d]"}`}>
+                      <Check size={12} strokeWidth={3} />
+                    </span>
+                    <div className="min-w-0">
+                      <div className="text-sm font-medium leading-tight text-white">{it.t}</div>
+                      <div className="mt-1 text-xs leading-snug text-white/45">{it.s}</div>
+                    </div>
+                  </li>
+                ))}
               </ul>
             </div>
           ))}
         </div>
 
-        {/* CTA */}
         <button
           onClick={onActivar}
-          className={`mt-8 group inline-flex items-center justify-center gap-2 rounded-full py-3.5 text-sm font-semibold transition-all ${
+          className={`group/btn mt-9 inline-flex items-center justify-center gap-2 rounded-full py-4 text-sm font-semibold transition-[transform,background-color,box-shadow,border-color] duration-300 hover:-translate-y-0.5 ${
             accent
-              ? "bg-[#f5961d] text-black hover:brightness-110 hover:-translate-y-0.5 hover:shadow-[0_20px_50px_-12px_rgba(245,150,29,0.7)]"
-              : "border border-white/20 bg-white/5 text-white hover:bg-white/10 hover:border-white/40"
+              ? "bg-[#f5961d] text-black hover:shadow-[0_20px_50px_-12px_rgba(245,150,29,0.7)]"
+              : "border border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10"
           }`}
           data-testid={`plan-cta-${plan.id}`}
         >
           Activar {plan.nombre}
-          <ArrowRight size={16} className="transition-transform group-hover:translate-x-1" />
+          <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
         </button>
       </div>
     </motion.div>

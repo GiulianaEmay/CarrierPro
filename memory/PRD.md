@@ -78,3 +78,7 @@ Crear una landing page premium, moderna, mobile-first y altamente optimizada par
 - Logo cropped to wordmark (/public/logo-wordmark.png) for larger, crisper rendering.
 - Footer: 4 columns, social links (IG carrier.pro, FB id=61592701653158, X ProCarrierFleet), copyright "Derechos de autor Emay Tech" + "Diseñado y construido por la increíble gente de Emay 💜".
 - Backlog P1: Email lead capture backup (Web3Forms/Formspree).
+
+## 2026-06 Update 2
+- New SavingsCalculator section (after Benefits): slider 50–2500 gal/unidad, units stepper, monthly/yearly gross savings, WhatsApp CTA with prefilled result. Editable values in /app/frontend/src/config.js (SAVINGS_PER_GALLON = 2.40).
+- Plans redesigned (price panel header, featured orange card, check lists). Testimonials redesigned (featured editorial quote + 2 stacked cards), same texts.

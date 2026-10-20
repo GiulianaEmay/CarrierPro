@@ -33,14 +33,16 @@ const TESTIMONIES = [
 ];
 
 export default function Testimonials() {
+  const [featured, ...rest] = TESTIMONIES;
   return (
     <section
       id="testimonios"
       data-testid="testimonials-section"
-      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5"
+      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5 overflow-hidden"
     >
+      <div className="absolute left-0 top-1/2 -z-10 h-[420px] w-[420px] -translate-y-1/2 rounded-full bg-[#f5961d]/[0.07] blur-[140px]" />
       <div className="container-cp">
-        <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
+        <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
             <span className="section-label">Testimonios</span>
             <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[58px] leading-[1.0] tracking-tight">
@@ -48,48 +50,69 @@ export default function Testimonials() {
               <span className="text-[#f5961d]">transportistas.</span>
             </h2>
           </div>
-          <p className="text-white/60 max-w-md text-base">
+          <p className="text-white/60 max-w-md text-base sm:text-lg">
             Operadores reales, ahorrando real. Cada testimonio refleja resultados con tu misma operación.
           </p>
         </div>
 
-        <div className="mt-12 grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {TESTIMONIES.map((t, i) => (
-            <motion.div
-              key={t.nombre}
-              initial={{ opacity: 0, y: 18 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-40px" }}
-              transition={{ duration: 0.55, delay: i * 0.08 }}
-              className="card p-7 flex flex-col"
-              data-testid={`testimonial-${i}`}
-            >
-              <Quote size={28} className="text-[#f5961d]" />
-              <p className="mt-4 text-base sm:text-lg leading-relaxed text-white/80 flex-1">
-                "{t.comentario}"
+        <div className="mt-14 grid gap-5 lg:grid-cols-[1.35fr_1fr]">
+          <Reveal i={0} className="relative flex flex-col justify-between overflow-hidden rounded-[32px] border border-white/10 bg-[#0b0b0b] p-8 sm:p-12" testid="testimonial-0">
+            <div className="absolute inset-0 dots-bg opacity-50" />
+            <Quote size={120} strokeWidth={1} className="absolute -right-4 -top-4 text-[#f5961d]/10" />
+            <div className="relative">
+              <Savings value={featured.ahorro} big />
+              <p className="mt-8 font-display text-2xl sm:text-3xl lg:text-[34px] leading-[1.2] font-medium text-white">
+                “{featured.comentario}”
               </p>
+            </div>
+            <Author t={featured} className="relative mt-12" />
+          </Reveal>
 
-              <div className="mt-6 pt-5 border-t border-white/10 flex items-center gap-3">
-                <img
-                  src={t.foto}
-                  alt={t.nombre}
-                  loading="lazy"
-                  className="h-11 w-11 rounded-full object-cover border border-white/10"
-                />
-                <div className="flex-1 min-w-0">
-                  <div className="font-semibold leading-tight">{t.nombre}</div>
-                  <div className="text-xs text-white/50 font-mono uppercase tracking-wider mt-0.5">
-                    {t.ciudad} · {t.unidades} {t.unidades > 1 ? "unidades" : "unidad"}
-                  </div>
+          <div className="grid gap-5">
+            {rest.map((t, idx) => (
+              <Reveal key={t.nombre} i={idx + 1} className="flex flex-col justify-between rounded-[28px] border border-white/10 bg-white/[0.02] p-7 sm:p-8 transition-colors duration-300 hover:border-white/20" testid={`testimonial-${idx + 1}`}>
+                <div className="flex items-start justify-between gap-4">
+                  <Quote size={24} className="text-[#f5961d]" />
+                  <Savings value={t.ahorro} />
                 </div>
-                <div className="rounded-full border border-emerald-400/30 bg-emerald-400/10 px-2.5 py-1 text-[11px] font-mono text-emerald-300 inline-flex items-center gap-1">
-                  <TrendingDown size={11} /> {t.ahorro}
-                </div>
-              </div>
-            </motion.div>
-          ))}
+                <p className="mt-5 text-base leading-relaxed text-white/80">“{t.comentario}”</p>
+                <Author t={t} className="mt-7" />
+              </Reveal>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
+
+const Reveal = ({ i, className, testid, children }) => (
+  <motion.div
+    initial={{ opacity: 0, y: 18 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    viewport={{ once: true, margin: "-40px" }}
+    transition={{ duration: 0.55, delay: i * 0.08 }}
+    className={className}
+    data-testid={testid}
+  >
+    {children}
+  </motion.div>
+);
+
+const Savings = ({ value, big }) => (
+  <div className={`inline-flex items-center gap-2 rounded-full border border-[#f5961d]/30 bg-[#f5961d]/10 font-mono text-[#f5961d] ${big ? "px-4 py-2 text-sm" : "px-3 py-1 text-[11px]"}`}>
+    <TrendingDown size={big ? 15 : 12} /> Ahorro {value}
+  </div>
+);
+
+const Author = ({ t, className }) => (
+  <div className={`flex items-center gap-3 border-t border-white/10 pt-5 ${className}`}>
+    <img src={t.foto} alt={t.nombre} loading="lazy" className="h-12 w-12 rounded-full border border-white/15 object-cover" />
+    <div>
+      <div className="font-semibold leading-tight">{t.nombre}</div>
+      <div className="mt-1 font-mono text-[10px] uppercase tracking-[0.18em] text-white/45">
+        {t.ciudad} · {t.unidades} {t.unidades > 1 ? "unidades" : "unidad"}
+      </div>
+    </div>
+  </div>
+);

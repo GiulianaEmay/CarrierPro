@@ -176,6 +176,38 @@ button:focus-visible, a:focus-visible, input:focus-visible {
   background-size: 22px 22px;
 }
 
+/* Range slider */
+.cp-range {
+  -webkit-appearance: none;
+  appearance: none;
+  height: 8px;
+  border-radius: 999px;
+  background: linear-gradient(to right, #f5961d var(--pct), rgba(255,255,255,0.1) var(--pct));
+  cursor: pointer;
+}
+.cp-range::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  height: 28px;
+  width: 28px;
+  border-radius: 999px;
+  background: #fff;
+  border: 6px solid #f5961d;
+  box-shadow: 0 0 0 6px rgba(245,150,29,0.2);
+  transition: transform 0.2s;
+}
+.cp-range::-webkit-slider-thumb:hover { transform: scale(1.1); }
+.cp-range::-moz-range-thumb {
+  height: 18px;
+  width: 18px;
+  border-radius: 999px;
+  background: #fff;
+  border: 6px solid #f5961d;
+}
+
+.diag-lines-dark {
+  background-image: repeating-linear-gradient(-45deg, #000 0, #000 1px, transparent 1px, transparent 14px);
+}
+
 /* Diagonal lines decorative */
 .diag-lines {
   background-image: repeating-linear-gradient(
