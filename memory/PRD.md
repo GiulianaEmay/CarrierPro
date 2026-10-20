@@ -93,3 +93,9 @@ Crear una landing page premium, moderna, mobile-first y altamente optimizada par
 - User edited GitHub repo (https://github.com/GiulianaEmay/CarrierPro, main@94ba272) outside Emergent. Repo version is now the BASE in /app/frontend (plans Digital 19.90/Fleet 29.90/Empresas 24.90, CorporateModal, config/corporate.js, SEO, GA, sitemap, robots, fonts Baloo 2 + Work Sans). WhatsApp = 51973982417 (user confirmed).
 - Re-applied on top: StatsStrip, SavingsCalculator (config/site.js), Calculadora nav link, Emergent-style footer w/ socials (config/corporate.js SOCIAL_LINKS) + Emay credits, Plans premium redesign, section-y/h2-cp spacing, transparent logo-wordmark.png, hero membership card visual, horizontal HowItWorks flow, FAQ reduced to 5, calculator "¿Cómo se lee?" + formula.
 - Always remind user: Save to GitHub -> Netlify deploys. Don't edit GitHub directly or versions diverge again.
+
+## 2026-10 Update 4
+- Legal pages: /terminos, /privacidad, /libro-de-reclamaciones (pathname routing in src/index.js, pages in src/pages, data in config/legal.js; email = CORPORATE_EMAIL carrier.pro.fleet@gmail.com, domicilio Trujillo, RUC 10613002419). Libro generates code CP-YYYYMMDD-XXXXX + mailto/copy/print.
+- PriceBoard in StationsMap (config/site.js FUEL_PRICE 27.99 -> 24.94). Calculator SAVINGS_PER_GALLON derived from FUEL_PRICE (3.05).
+- Footer Emergent-style (#101010), compact round WhatsApp FAB, footer links work from legal pages (/#id, /?modal=type opens CorporateModal). Desktop nav at xl+.
+- Deploy: user to Save to GitHub -> GiulianaEmay/CarrierPro main (Force Push safe: /app contains all repo content as of 94ba272).

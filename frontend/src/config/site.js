@@ -1,5 +1,12 @@
-// Edita aquí el ahorro por galón (S/) y el rango de la calculadora
-export const SAVINGS_PER_GALLON = 2.4;
+// Edita aquí la comparativa de precios del mapa (S/ por galón)
+export const FUEL_PRICE = {
+  pizarra: 27.99,
+  carrier: 24.94,
+  actualizado: "20/10/2026",
+};
+
+// Ahorro por galón: se calcula solo desde FUEL_PRICE. Rango de la calculadora
+export const SAVINGS_PER_GALLON = Math.round((FUEL_PRICE.pizarra - FUEL_PRICE.carrier) * 100) / 100;
 export const GALLONS_MIN = 50;
 export const GALLONS_MAX = 2500;
 export const GALLONS_STEP = 10;
@@ -12,9 +19,3 @@ export const STATS = [
   { value: 15, prefix: "+", label: "Ciudades del norte" },
 ];
 
-// Edita aquí la comparativa de precios del mapa (S/ por galón)
-export const FUEL_PRICE = {
-  pizarra: 27.99,
-  carrier: 24.94,
-  actualizado: "20/10/2026",
-};
