@@ -30,7 +30,7 @@ export default function LegalLayout({ title, label, intro, children, testid }) {
         </div>
         <div className="mt-12 max-w-3xl">{children}</div>
       </main>
-      <Footer onOpenCorporate={() => { window.location.href = "/"; }} />
+      <Footer onOpenCorporate={(type) => { window.location.href = `/?modal=${type}`; }} />
       <StickyWhatsApp />
     </div>
   );

@@ -26,6 +26,11 @@ export default function App() {
   const [leadOpen, setLeadOpen] = useState(false);
   const [selectedPlan, setSelectedPlan] = useState("");
 
+  useEffect(() => {
+    const modal = new URLSearchParams(window.location.search).get("modal");
+    if (["about", "partners", "careers", "contact"].includes(modal)) setCorporateType(modal);
+  }, []);
+
   // Cursor glow effect on hero
   useEffect(() => {
     const handle = (e) => {

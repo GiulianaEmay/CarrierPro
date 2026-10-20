@@ -1,0 +1,41 @@
+{
+  "summary": "Frontend-only regression test of the Carrier Pro static site after the GitHub merge. The new work is the legal pages (/terminos, /privacidad, /libro-de-reclamaciones), the PriceBoard in StationsMap, config/legal.js and the sitemap. Working: all 3 routes render with correct document titles; trailing slashes and unknown paths fall back to the home page; Netlify _redirects is present; 'Volver al inicio' works; the footer legal links point to real pages; the PriceBoard renders S/27.99 -> S/24.94, saving S/3.05; the Libro form blocks an empty submit (HTML5), and a full submit (menor de edad + apoderado, Queja, monto) produces a code CP-YYYYMMDD-XXXXX, a full text summary and a mailto. No horizontal scroll at 390px and no console errors. Quick home regression passed: the plan CTA opens the LeadModal and the success link builds the wa.me URL. Several content and UX issues were found (below).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [
+      {"component": "Footer on legal pages (LegalLayout)", "issue": "The 'Carrier Pro' column links and 'Ecosistema'/'Preguntas frecuentes' use bare hashes (#como-funciona, #beneficios, #calculadora, #estaciones, #planes, #empresas, #faq). Those sections don't exist on the legal pages, so the links do nothing. They should be '/#id' when not on the home page.", "selector": "[data-testid^='footer-link-']", "priority": "MEDIUM"},
+      {"component": "Footer on legal pages", "issue": "Nosotros, Alianzas, Trabaja con nosotros and Formulario de contacto redirect to '/' and do NOT open the requested CorporateModal, so the user's intent is lost. Consider '/?modal=contact' or a hash that App reads on mount.", "selector": "[data-testid='footer-contact']", "priority": "MEDIUM"},
+      {"component": "LibroReclamaciones 'Registrar otra hoja'", "issue": "The 'menor' state is not reset. After a new sheet the 'Soy menor de edad' checkbox stays checked and the apoderado field stays visible and required.", "selector": "[data-testid='libro-new']", "priority": "LOW"}
+    ],
+    "integration_issues": [
+      {"flow": "Email addresses", "issue": "There are two different email addresses: config/corporate.js CORPORATE_EMAIL='carrier.pro.fleet@gmail.com' (footer and corporate forms) vs config/legal.js LEGAL.email='Carrier.fleet.pro@gmail.com' (Términos, Privacidad, and the Libro de Reclamaciones mailto). The word order differs (pro.fleet vs fleet.pro), so one of them is probably wrong and complaints may go to a non-existent mailbox.", "affected_selectors": ["[data-testid='libro-send-email']", "footer a[href^='mailto']"]}
+    ],
+    "design_issues": [
+      {"screen": "Price board vs Calculator", "issues": ["The PriceBoard shows a saving of S/3.05 per gallon (27.99-24.94), but the calculator uses SAVINGS_PER_GALLON=2.4 ('800 gal x 1 unidad x S/ 2.40'). This conflicting messaging is on the same page. Derive one from the other or explain the difference."]},
+      {"screen": "Map overlay", "issues": ["The 'Estaciones Carrier Pro · Primax' pill at top-left overlaps the Google My Maps header text ('...your own.' is visible behind it). Cosmetic only."]},
+      {"screen": "Libro / Términos content", "issues": ["Domicilio shows the placeholder 'Atención 100% virtual (dirección fiscal por completar)'. INDECOPI's Libro de Reclamaciones expects a real provider address. Flag to the user."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Unify the email: pick the real one and use a single constant in both config/corporate.js and config/legal.js",
+    "Make footer anchors work from the legal pages (prefix with '/' when pathname !== '/')",
+    "Make the corporate footer buttons on legal pages open the corresponding modal after redirecting to home (query param or hash)",
+    "Reconcile the PriceBoard saving (S/3.05) with the calculator's SAVINGS_PER_GALLON (S/2.40)",
+    "Reset 'menor' in LibroReclamaciones when 'Registrar otra hoja' is clicked",
+    "Remove the untracked frontend/package-lock.json (the project uses yarn)"
+  ],
+  "critical_code_review_comments": [
+    "Two email constants with different values (CORPORATE_EMAIL vs LEGAL.email). This is a single-source-of-truth violation.",
+    "Footer is reused in LegalLayout but assumes it is on the home page (bare hash links, the onOpenCorporate hack).",
+    "frontend/package-lock.json exists alongside yarn.lock. Mixed lockfiles can break the Netlify build.",
+    "LibroReclamaciones Area testids are derived from labels via toLowerCase(), which is fine; most other Field inputs have no data-testid (selected by name in the tests).",
+    "The circular import of WHATSAPP_NUMBER/URL from App.js remains (noted in iteration 1)."
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (static site)", "frontend": "90%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Static React site, routing via index.js pathname map (no react-router). Legal page testids: page-terminos, page-privacidad, page-libro, legal-back, legal-logo, libro-form, libro-provider, libro-menor, libro-servicio/producto, libro-reclamo/queja, libro-detalle, libro-pedido, libro-accept, libro-submit, libro-confirmation, libro-code, libro-send-email, libro-copy, libro-print, libro-new. PriceBoard: price-board, price-pizarra, price-carrier, price-ahorro. Libro inputs are selected by name attribute (= label text). The browser date in this env is 2026-10-20."
+}

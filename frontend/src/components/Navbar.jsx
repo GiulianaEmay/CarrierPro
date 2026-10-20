@@ -37,7 +37,7 @@ export default function Navbar({ onActivar }) {
           <Logo />
         </a>
 
-        <nav className="hidden lg:flex items-center gap-7 rounded-full border border-white/10 bg-white/[0.03] px-7 py-2.5 backdrop-blur-md" aria-label="Principal">
+        <nav className="hidden xl:flex items-center gap-7 rounded-full border border-white/10 bg-white/[0.03] px-7 py-2.5 backdrop-blur-md" aria-label="Principal">
           {links.map((l) => (
             <a
               key={l.href}
@@ -50,7 +50,7 @@ export default function Navbar({ onActivar }) {
           ))}
         </nav>
 
-        <div className="hidden lg:flex items-center gap-3">
+        <div className="hidden xl:flex items-center gap-3">
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -71,7 +71,7 @@ export default function Navbar({ onActivar }) {
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/5"
+          className="xl:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/5"
           aria-label="Menú"
           data-testid="nav-menu-toggle"
         >
@@ -81,7 +81,7 @@ export default function Navbar({ onActivar }) {
 
       {/* Mobile menu */}
       <div
-        className={`lg:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${
+        className={`xl:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${
           open ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >

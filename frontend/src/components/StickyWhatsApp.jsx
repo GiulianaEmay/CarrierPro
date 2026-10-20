@@ -1,5 +1,4 @@
 import React from "react";
-import { MessageCircle } from "lucide-react";
 import { WHATSAPP_URL } from "../App";
 
 export default function StickyWhatsApp() {
@@ -9,14 +8,14 @@ export default function StickyWhatsApp() {
       target="_blank"
       rel="noopener noreferrer"
       aria-label="Hablar por WhatsApp"
+      title="Hablar por WhatsApp"
       data-testid="sticky-whatsapp"
-      className="fixed bottom-5 right-5 z-40 inline-flex items-center gap-2 rounded-full bg-[#25D366] text-white px-4 py-3 shadow-[0_18px_40px_-12px_rgba(37,211,102,0.6)] hover:scale-105 transition-transform"
+      className="fixed bottom-5 right-5 z-40 inline-flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_14px_34px_-10px_rgba(37,211,102,0.6)] transition-transform duration-300 hover:scale-110"
     >
-      <span className="relative flex h-6 w-6 items-center justify-center">
-        <span className="absolute inset-0 rounded-full bg-white/40 pulse-ring" />
-        <MessageCircle size={18} />
-      </span>
-      <span className="hidden sm:inline text-sm font-semibold">WhatsApp</span>
+      <span className="absolute inset-0 rounded-full bg-[#25D366]/40 pulse-ring" />
+      <svg viewBox="0 0 24 24" width="26" height="26" fill="currentColor" aria-hidden="true" className="relative">
+        <path d="M17.47 14.38c-.3-.15-1.75-.86-2.02-.96-.27-.1-.47-.15-.67.15-.2.3-.77.96-.94 1.16-.17.2-.35.22-.64.07-.3-.15-1.25-.46-2.38-1.47-.88-.78-1.47-1.75-1.64-2.04-.17-.3-.02-.46.13-.6.13-.14.3-.35.45-.52.15-.17.2-.3.3-.5.1-.2.05-.37-.03-.52-.07-.15-.67-1.6-.92-2.2-.24-.58-.48-.5-.67-.5h-.57c-.2 0-.52.07-.8.37-.27.3-1.04 1.02-1.04 2.48s1.07 2.88 1.21 3.07c.15.2 2.1 3.2 5.08 4.49.71.3 1.26.49 1.7.63.71.22 1.36.19 1.87.12.57-.09 1.75-.72 2-1.41.25-.7.25-1.29.17-1.41-.07-.13-.27-.2-.57-.35zM12.05 21.5h-.01a9.4 9.4 0 0 1-4.8-1.32l-.34-.2-3.57.94.95-3.48-.22-.36a9.41 9.41 0 0 1-1.44-5.01c0-5.2 4.23-9.43 9.44-9.43a9.38 9.38 0 0 1 9.43 9.44c0 5.2-4.24 9.43-9.44 9.43zm8.03-17.46A11.32 11.32 0 0 0 12.05.7C5.79.7.7 5.79.7 12.05c0 2 .52 3.95 1.52 5.67L.6 23.3l5.72-1.5a11.3 11.3 0 0 0 5.42 1.38h.01c6.26 0 11.35-5.09 11.35-11.35 0-3.03-1.18-5.88-3.32-8.02z" />
+      </svg>
     </a>
   );
 }

@@ -11,11 +11,12 @@ const XIcon = ({ size = 18 }) => (
 );
 
 const SOCIAL_ICONS = { LinkedIn: Linkedin, Facebook, Instagram, X: XIcon, TikTok: Music2 };
+const HOME = typeof window !== "undefined" && window.location.pathname !== "/" ? "/" : "";
 const LINK_CLASS = "text-left text-white/55 hover:text-white transition-colors";
 
 export default function Footer({ onOpenCorporate }) {
   return (
-    <footer className="border-t border-white/10 bg-black pt-20 sm:pt-24 pb-28" data-testid="footer">
+    <footer className="border-t border-white/10 bg-[#101010] pt-20 sm:pt-24 pb-24 md:pb-10" data-testid="footer">
       <div className="container-cp grid gap-12 lg:grid-cols-[1fr_2.3fr] lg:gap-14">
         <div className="max-w-sm">
           <Logo />
@@ -26,35 +27,35 @@ export default function Footer({ onOpenCorporate }) {
         <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
           <FooterColumn title="Carrier Pro">
             {[["Cómo funciona", "como-funciona"], ["Beneficios", "beneficios"], ["Calculadora", "calculadora"], ["Estaciones", "estaciones"], ["Planes", "planes"], ["Carrier Empresas", "empresas"]].map(([label, id]) => (
-              <li key={id}><a className={LINK_CLASS} href={`#${id}`} data-testid={`footer-link-${id}`}>{label}</a></li>
+              <li key={id}><a className={LINK_CLASS} href={`${HOME}#${id}`} data-testid={`footer-link-${id}`}>{label}</a></li>
             ))}
           </FooterColumn>
           <FooterColumn title="Empresa">
             <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("about")}>Nosotros</button></li>
-            <li><a className={LINK_CLASS} href="#beneficios">Ecosistema Carrier Pro</a></li>
+            <li><a className={LINK_CLASS} href={`${HOME}#beneficios`}>Ecosistema Carrier Pro</a></li>
             <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("partners")} data-testid="footer-partners">Alianzas comerciales</button></li>
             <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("careers")} data-testid="footer-careers">Trabaja con nosotros</button></li>
           </FooterColumn>
           <FooterColumn title="Contacto">
             <li><a className={LINK_CLASS} href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="footer-whatsapp">+51 973 982 417</a></li>
-            <li><a className={`${LINK_CLASS} break-words`} href={`mailto:${CORPORATE_EMAIL}`}>{CORPORATE_EMAIL}</a></li>
+            <li><a className={LINK_CLASS} href={`mailto:${CORPORATE_EMAIL}`}>{CORPORATE_EMAIL.split("@")[0]}<wbr />@{CORPORATE_EMAIL.split("@")[1]}</a></li>
             <li className="text-white/55">Trujillo · Perú</li>
             <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("contact")} data-testid="footer-contact">Formulario de contacto</button></li>
           </FooterColumn>
           <FooterColumn title="Información">
             {LEGAL_LINKS.slice(0, 2).map((link) => <LegalLink key={link.label} link={link} />)}
-            <li><a className={LINK_CLASS} href="#faq">Preguntas frecuentes</a></li>
+            <li><a className={LINK_CLASS} href={`${HOME}#faq`}>Preguntas frecuentes</a></li>
             <LegalLink link={LEGAL_LINKS[2]} />
           </FooterColumn>
         </div>
       </div>
 
-      <div className="container-cp mt-20"><div className="grid items-center gap-6 border-t border-white/10 pt-8 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-white/45 md:grid-cols-3 md:text-left">
+      <div className="container-cp mt-20"><div className="grid items-center gap-6 border-t border-white/10 pt-8 text-center font-mono text-[12px] uppercase tracking-[0.14em] text-white/55 md:grid-cols-3 md:text-left">
         <div data-testid="footer-copyright">Copyright © Emay Tech {new Date().getFullYear()}</div>
         <div className="leading-relaxed md:text-center" data-testid="footer-credits">
           Diseñado y construido por<br />la increíble gente de Emay 💜
         </div>
-        <div className="flex justify-center gap-5 md:justify-end" data-testid="footer-socials">
+        <div className="flex justify-center gap-6 md:justify-end md:pr-16 2xl:pr-0" data-testid="footer-socials">
           {Object.entries(SOCIAL_LINKS).filter(([, url]) => url).map(([name, url]) => {
             const Icon = SOCIAL_ICONS[name];
             return (

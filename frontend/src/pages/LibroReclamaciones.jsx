@@ -28,7 +28,7 @@ export default function LibroReclamaciones() {
   return (
     <LegalLayout title="Libro de reclamaciones" label="Libro de reclamaciones virtual" testid="page-libro" intro="Conforme al Código de Protección y Defensa del Consumidor, puedes registrar aquí tu reclamo o queja.">
       <ProviderBox />
-      {result ? <Confirmation result={result} onNew={() => setResult(null)} /> : (
+      {result ? <Confirmation result={result} onNew={() => { setResult(null); setMenor(false); }} /> : (
         <form onSubmit={submit} className="mt-10 space-y-10" data-testid="libro-form">
           <Block n="1" title="Identificación del consumidor reclamante">
             <div className="grid gap-5 sm:grid-cols-2">
