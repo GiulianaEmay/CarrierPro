@@ -11,18 +11,18 @@ export default function StationsMap() {
     <section
       id="estaciones"
       data-testid="stations-section"
-      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/10"
+      className="relative section-y border-t border-white/10"
     >
       <div className="container-cp">
         <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-6">
           <div>
             <span className="section-label">Mapa de estaciones</span>
-            <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[58px] leading-[1.0] tracking-tight">
+            <h2 className="h2-cp mt-5">
               Encuentra estaciones <br />
               <span className="text-[#f5961d]">afiliadas Primax.</span>
             </h2>
             <p className="mt-5 text-white/60 text-base sm:text-lg max-w-lg">
-              Estas son las estaciones donde puedes usar tu QR Carrier Pro y acceder al precio de convenio. Comenzamos en Trujillo y La Libertad, en expansión nacional.
+              Consulta las ciudades y estaciones habilitadas para acceder a tu beneficio Carrier Pro en Primax.
             </p>
           </div>
           <a

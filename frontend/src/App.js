@@ -3,26 +3,28 @@ import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Trust from "./components/Trust";
 import StatsStrip from "./components/StatsStrip";
+import SavingsCalculator from "./components/SavingsCalculator";
 import HowItWorks from "./components/HowItWorks";
 import StationsMap from "./components/StationsMap";
 import Benefits from "./components/Benefits";
 import Plans from "./components/Plans";
-import SavingsCalculator from "./components/SavingsCalculator";
 import Future from "./components/Future";
-import Testimonials from "./components/Testimonials";
+import CorporateModal from "./components/CorporateModal";
 import FAQ from "./components/FAQ";
 import FinalCTA from "./components/FinalCTA";
 import Footer from "./components/Footer";
 import LeadModal from "./components/LeadModal";
 import StickyWhatsApp from "./components/StickyWhatsApp";
 
-export const WHATSAPP_NUMBER = "51916776302";
+export const WHATSAPP_NUMBER = "51973982417";
 export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-  "Hola Carrier Pro, quiero más información sobre la afiliación de mi unidad."
+  "Hola Carrier Pro, quiero activar mi membresía. Les enviaré mi placa para empezar."
 )}`;
 
 export default function App() {
+  const [corporateType, setCorporateType] = useState(null);
   const [leadOpen, setLeadOpen] = useState(false);
+  const [selectedPlan, setSelectedPlan] = useState("");
 
   // Cursor glow effect on hero
   useEffect(() => {
@@ -34,7 +36,10 @@ export default function App() {
     return () => window.removeEventListener("pointermove", handle);
   }, []);
 
-  const openLead = () => setLeadOpen(true);
+  const openLead = (plan = "") => {
+    setSelectedPlan(typeof plan === "string" ? plan : "");
+    setLeadOpen(true);
+  };
 
   return (
     <div className="relative bg-black text-white min-h-screen overflow-x-hidden" data-testid="app-root">
@@ -49,13 +54,13 @@ export default function App() {
         <SavingsCalculator />
         <Plans onActivar={openLead} />
         <Future />
-        <Testimonials />
         <FAQ />
         <FinalCTA onActivar={openLead} />
       </main>
-      <Footer />
+      <Footer onOpenCorporate={setCorporateType} />
+      {corporateType && <CorporateModal key={corporateType} type={corporateType} onClose={() => setCorporateType(null)} />}
       <StickyWhatsApp />
-      <LeadModal open={leadOpen} onClose={() => setLeadOpen(false)} />
+      <LeadModal key={String(leadOpen) + selectedPlan} selectedPlan={selectedPlan} open={leadOpen} onClose={() => setLeadOpen(false)} />
     </div>
   );
 }

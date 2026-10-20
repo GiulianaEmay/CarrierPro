@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import { animate, useInView } from "framer-motion";
-import { STATS } from "../config";
+import { STATS } from "../config/site";
 
 function Counter({ value, prefix, testid }) {
   const ref = useRef(null);

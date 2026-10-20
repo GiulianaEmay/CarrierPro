@@ -37,7 +37,7 @@ export default function Navbar({ onActivar }) {
           <Logo />
         </a>
 
-        <nav className="hidden md:flex items-center gap-8 rounded-full border border-white/10 bg-white/[0.03] px-7 py-2.5 backdrop-blur-md" aria-label="Principal">
+        <nav className="hidden lg:flex items-center gap-7 rounded-full border border-white/10 bg-white/[0.03] px-7 py-2.5 backdrop-blur-md" aria-label="Principal">
           {links.map((l) => (
             <a
               key={l.href}
@@ -50,7 +50,7 @@ export default function Navbar({ onActivar }) {
           ))}
         </nav>
 
-        <div className="hidden md:flex items-center gap-3">
+        <div className="hidden lg:flex items-center gap-3">
           <a
             href={WHATSAPP_URL}
             target="_blank"
@@ -62,16 +62,16 @@ export default function Navbar({ onActivar }) {
           </a>
           <button
             onClick={onActivar}
-            className="rounded-full bg-[#f5961d] px-5 py-2.5 text-sm font-semibold text-black transition-all hover:brightness-110 hover:-translate-y-0.5"
+            className="font-mono rounded-full bg-[#f5961d] px-5 py-2.5 text-sm font-semibold text-black transition-all hover:brightness-110 hover:-translate-y-0.5"
             data-testid="nav-activar-btn"
           >
-            Activar unidad
+            Activar membresía
           </button>
         </div>
 
         <button
           onClick={() => setOpen((v) => !v)}
-          className="md:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/5"
+          className="lg:hidden inline-flex items-center justify-center w-10 h-10 rounded-full border border-white/20 bg-white/5"
           aria-label="Menú"
           data-testid="nav-menu-toggle"
         >
@@ -81,7 +81,7 @@ export default function Navbar({ onActivar }) {
 
       {/* Mobile menu */}
       <div
-        className={`md:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${
+        className={`lg:hidden overflow-hidden transition-[max-height,opacity] duration-300 ${
           open ? "max-h-[560px] opacity-100" : "max-h-0 opacity-0"
         }`}
       >
@@ -103,10 +103,10 @@ export default function Navbar({ onActivar }) {
                 setOpen(false);
                 onActivar();
               }}
-              className="rounded-full bg-[#f5961d] px-5 py-3 text-sm font-semibold text-black"
+              className="font-mono rounded-full bg-[#f5961d] px-5 py-3 text-sm font-semibold text-black"
               data-testid="nav-mobile-activar"
             >
-              Activar mi unidad
+              Activar mi membresía
             </button>
             <a
               href={WHATSAPP_URL}

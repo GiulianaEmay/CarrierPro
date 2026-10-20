@@ -1,7 +1,8 @@
 import React from "react";
-import { Instagram, Facebook, ArrowUpRight } from "lucide-react";
+import { Linkedin, Facebook, Instagram, Music2 } from "lucide-react";
 import Logo from "./Logo";
 import { WHATSAPP_URL } from "../App";
+import { CORPORATE_EMAIL, SOCIAL_LINKS, LEGAL_LINKS } from "../config/corporate";
 
 const XIcon = ({ size = 18 }) => (
   <svg viewBox="0 0 24 24" width={size} height={size} fill="currentColor" aria-hidden="true">
@@ -9,86 +10,78 @@ const XIcon = ({ size = 18 }) => (
   </svg>
 );
 
-const SOCIALS = [
-  { id: "instagram", label: "Instagram", href: "https://www.instagram.com/carrier.pro/", Icon: Instagram },
-  { id: "facebook", label: "Facebook", href: "https://www.facebook.com/profile.php?id=61592701653158", Icon: Facebook },
-  { id: "x", label: "X", href: "https://x.com/ProCarrierFleet", Icon: XIcon },
-];
+const SOCIAL_ICONS = { LinkedIn: Linkedin, Facebook, Instagram, X: XIcon, TikTok: Music2 };
+const LINK_CLASS = "text-left text-white/55 hover:text-white transition-colors";
 
-const SECTIONS = [
-  ["#como-funciona", "Cómo funciona"],
-  ["#estaciones", "Estaciones"],
-  ["#beneficios", "Beneficios"],
-  ["#calculadora", "Calculadora"],
-  ["#planes", "Planes"],
-  ["#faq", "FAQ"],
-];
-
-const Label = ({ children }) => (
-  <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/40">{children}</div>
-);
-
-export default function Footer() {
+export default function Footer({ onOpenCorporate }) {
   return (
-    <footer className="relative border-t border-white/10 pt-20 pb-28 sm:pb-12" data-testid="footer">
-      <div className="container-cp grid gap-12 sm:grid-cols-2 lg:grid-cols-[1.4fr_1fr_1fr_1fr]">
-        <div>
+    <footer className="border-t border-white/10 bg-black pt-20 sm:pt-24 pb-28" data-testid="footer">
+      <div className="container-cp grid gap-12 lg:grid-cols-[1fr_2.3fr] lg:gap-14">
+        <div className="max-w-sm">
           <Logo />
-          <p className="mt-6 max-w-xs text-sm leading-relaxed text-white/55">
-            Los beneficios de una gran flota. Sin ser una gran flota.
+          <p className="mt-6 text-[15px] leading-relaxed text-white/60">
+            Una sola membresía. Múltiples beneficios. Carrier Pro reduce y optimiza los costos de tu vehículo, comenzando por el combustible en Primax.
           </p>
         </div>
-        <div>
-          <Label>Secciones</Label>
-          <ul className="mt-5 space-y-3 text-sm text-white/70">
-            {SECTIONS.map(([href, label]) => (
-              <li key={href}>
-                <a href={href} className="transition-colors hover:text-white" data-testid={`footer-link-${href.slice(1)}`}>{label}</a>
-              </li>
+        <div className="grid grid-cols-2 gap-x-8 gap-y-10 sm:grid-cols-4">
+          <FooterColumn title="Carrier Pro">
+            {[["Cómo funciona", "como-funciona"], ["Beneficios", "beneficios"], ["Calculadora", "calculadora"], ["Estaciones", "estaciones"], ["Planes", "planes"], ["Carrier Empresas", "empresas"]].map(([label, id]) => (
+              <li key={id}><a className={LINK_CLASS} href={`#${id}`} data-testid={`footer-link-${id}`}>{label}</a></li>
             ))}
-          </ul>
-        </div>
-        <div>
-          <Label>Contacto</Label>
-          <ul className="mt-5 space-y-3 text-sm text-white/70">
-            <li>
-              <a href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" className="transition-colors hover:text-[#f5961d]" data-testid="footer-whatsapp">
-                WhatsApp: +51 916 776 302
-              </a>
-            </li>
-            <li>Trujillo · La Libertad · Perú</li>
-          </ul>
-        </div>
-        <div>
-          <Label>Síguenos</Label>
-          <div className="mt-5 flex gap-3" data-testid="footer-socials">
-            {SOCIALS.map(({ id, label, href, Icon }) => (
-              <a
-                key={id}
-                href={href}
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label={label}
-                data-testid={`footer-social-${id}`}
-                className="group inline-flex h-11 w-11 items-center justify-center rounded-full border border-white/15 bg-white/[0.04] text-white/75 transition-[background-color,color,border-color,transform] duration-300 hover:-translate-y-0.5 hover:border-[#f5961d] hover:bg-[#f5961d] hover:text-black"
-              >
-                <Icon size={18} />
-              </a>
-            ))}
-          </div>
-          <a href={SOCIALS[0].href} target="_blank" rel="noopener noreferrer" className="mt-5 inline-flex items-center gap-1 text-xs text-white/50 transition-colors hover:text-[#f5961d]">
-            @carrier.pro <ArrowUpRight size={12} />
-          </a>
+          </FooterColumn>
+          <FooterColumn title="Empresa">
+            <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("about")}>Nosotros</button></li>
+            <li><a className={LINK_CLASS} href="#beneficios">Ecosistema Carrier Pro</a></li>
+            <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("partners")} data-testid="footer-partners">Alianzas comerciales</button></li>
+            <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("careers")} data-testid="footer-careers">Trabaja con nosotros</button></li>
+          </FooterColumn>
+          <FooterColumn title="Contacto">
+            <li><a className={LINK_CLASS} href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="footer-whatsapp">+51 973 982 417</a></li>
+            <li><a className={`${LINK_CLASS} break-all`} href={`mailto:${CORPORATE_EMAIL}`}>{CORPORATE_EMAIL}</a></li>
+            <li className="text-white/55">Trujillo · Perú</li>
+            <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("contact")} data-testid="footer-contact">Formulario de contacto</button></li>
+          </FooterColumn>
+          <FooterColumn title="Información">
+            {LEGAL_LINKS.slice(0, 2).map((link) => <LegalLink key={link.label} link={link} />)}
+            <li><a className={LINK_CLASS} href="#faq">Preguntas frecuentes</a></li>
+            <LegalLink link={LEGAL_LINKS[2]} />
+          </FooterColumn>
         </div>
       </div>
-      <div className="container-cp mt-16 flex flex-col items-center justify-between gap-4 border-t border-white/10 pt-8 text-center sm:flex-row sm:text-left">
-        <div className="font-mono text-xs text-white/45" data-testid="footer-copyright">
-          © {new Date().getFullYear()} Derechos de autor Emay Tech
+
+      <div className="container-cp mt-20 grid items-center gap-6 border-t border-white/10 pt-8 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-white/45 md:grid-cols-3 md:text-left">
+        <div data-testid="footer-copyright">Copyright © Emay Tech {new Date().getFullYear()}</div>
+        <div className="leading-relaxed md:text-center" data-testid="footer-credits">
+          Diseñado y construido por<br />la increíble gente de Emay 💜
         </div>
-        <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/50" data-testid="footer-credits">
-          Diseñado y construido por la increíble gente de <span className="text-[#f5961d]">Emay</span> 💜
+        <div className="flex justify-center gap-5 md:justify-end" data-testid="footer-socials">
+          {Object.entries(SOCIAL_LINKS).filter(([, url]) => url).map(([name, url]) => {
+            const Icon = SOCIAL_ICONS[name];
+            return (
+              <a key={name} href={url} aria-label={name} target="_blank" rel="noopener noreferrer" data-testid={`footer-social-${name.toLowerCase()}`} className="text-white/55 transition-[color,transform] duration-300 hover:-translate-y-0.5 hover:text-[#f5961d]">
+                <Icon size={18} />
+              </a>
+            );
+          })}
         </div>
       </div>
     </footer>
+  );
+}
+
+function FooterColumn({ title, children }) {
+  return (
+    <nav aria-label={title} className="min-w-0">
+      <h2 className="text-sm font-semibold text-white">{title}</h2>
+      <ul className="mt-5 space-y-3 text-sm">{children}</ul>
+    </nav>
+  );
+}
+
+function LegalLink({ link }) {
+  return (
+    <li>
+      {link.href ? <a href={link.href} className={LINK_CLASS}>{link.label}</a> : <span className="text-white/35">{link.label}<span className="mt-1 block text-[11px] text-white/25">Pendiente de publicación</span></span>}
+    </li>
   );
 }

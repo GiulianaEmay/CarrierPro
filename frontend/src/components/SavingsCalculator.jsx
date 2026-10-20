@@ -8,7 +8,7 @@ import {
   GALLONS_MAX,
   GALLONS_STEP,
   GALLONS_DEFAULT,
-} from "../config";
+} from "../config/site";
 
 const fmt = (n) => n.toLocaleString("es-PE", { maximumFractionDigits: 0 });
 const MAX_UNITS = 50;
@@ -26,12 +26,12 @@ export default function SavingsCalculator() {
   const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareMsg)}`;
 
   return (
-    <section id="calculadora" data-testid="calculator-section" className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5 overflow-hidden">
+    <section id="calculadora" data-testid="calculator-section" className="relative section-y border-t border-white/5 overflow-hidden">
       <div className="absolute -right-40 top-1/3 -z-10 h-[460px] w-[460px] rounded-full bg-[#f5961d]/10 blur-[140px]" />
       <div className="container-cp">
         <div className="max-w-2xl">
           <span className="section-label"><Calculator size={12} /> Calculadora de ahorro</span>
-          <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[58px] leading-[1.0] tracking-tight">
+          <h2 className="h2-cp mt-5">
             ¿Cuánto <span className="text-[#f5961d]">ahorras</span> al mes?
           </h2>
           <p className="mt-5 text-white/60 text-base sm:text-lg">
@@ -44,7 +44,7 @@ export default function SavingsCalculator() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={{ duration: 0.6 }}
-          className="mt-14 grid lg:grid-cols-[1.15fr_1fr] rounded-[32px] border border-white/10 bg-white/[0.02] overflow-hidden"
+          className="mt-10 sm:mt-12 grid lg:grid-cols-[1.15fr_1fr] rounded-[32px] border border-white/10 bg-white/[0.02] overflow-hidden"
         >
           <div className="p-7 sm:p-10 lg:p-12 space-y-10">
             <div>

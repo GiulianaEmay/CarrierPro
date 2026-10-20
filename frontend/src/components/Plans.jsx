@@ -1,288 +1,113 @@
-import React, { useState } from "react";
+import React from "react";
 import { motion } from "framer-motion";
-import {
-  Check,
-  Sparkles,
-  ArrowRight,
-  Fuel,
-  QrCode,
-  Receipt,
-  Headphones,
-  LineChart,
-  History,
-  FileBarChart,
-  Activity,
-  Wallet,
-  Route,
-  Users,
-  Star,
-  Crown,
-  Layers,
-  Plus,
-} from "lucide-react";
+import { Check, ArrowRight, QrCode, CreditCard, Building2, Sparkles } from "lucide-react";
 
 const PLANS = [
-  {
-    id: "carrier",
-    nombre: "Carrier",
-    precio: 50,
-    tag: "Esencial",
-    accent: "white",
-    icon: Layers,
-    tagline: "Empieza a ahorrar desde tu primera carga.",
-    descripcion:
-      "Ideal para transportistas independientes que buscan reducir gastos operativos sin complicaciones.",
-    incluyeAnterior: null,
-    groups: [
-      {
-        title: "Beneficio principal",
-        items: [
-          { icon: Fuel, t: "Beneficios en estaciones afiliadas", s: "Mejores condiciones en cada carga" },
-          { icon: Wallet, t: "Pago directo en estación", s: "Efectivo, tarjeta, Yape u otros" },
-          { icon: Receipt, t: "Facturación directa", s: "La estación factura a tu RUC" },
-        ],
-      },
-      {
-        title: "Acceso & soporte",
-        items: [
-          { icon: QrCode, t: "Identificación digital por QR", s: "Acceso rápido y seguro al beneficio" },
-          { icon: Headphones, t: "Soporte directo", s: "Por WhatsApp · sin contratos largos" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "pro",
-    nombre: "Carrier Pro",
-    precio: 75,
-    tag: "Más elegido",
-    accent: "orange",
-    icon: Star,
-    tagline: "Control real de cada unidad de tu operación.",
-    descripcion:
-      "Para transportistas que quieren visibilidad y reportes del consumo de cada vehículo.",
-    incluyeAnterior: "Carrier",
-    groups: [
-      {
-        title: "Control operativo",
-        items: [
-          { icon: History, t: "Historial digital de cargas", s: "Cada carga, fecha y monto por unidad" },
-          { icon: LineChart, t: "Dashboard de consumo", s: "Indicadores por vehículo en tiempo real" },
-          { icon: FileBarChart, t: "Reportes semanales y mensuales", s: "Para control operativo y contable" },
-        ],
-      },
-      {
-        title: "Visibilidad",
-        items: [
-          { icon: Activity, t: "Seguimiento detallado", s: "Detecta variaciones o consumos inusuales" },
-          { icon: Headphones, t: "Soporte prioritario", s: "Atención preferente para miembros Pro" },
-        ],
-      },
-    ],
-  },
-  {
-    id: "plus",
-    nombre: "Carrier Plus",
-    precio: 80,
-    tag: "Operación completa",
-    accent: "white",
-    icon: Crown,
-    tagline: "Gestión integral de viajes, gastos y comunidad.",
-    descripcion:
-      "Para quienes buscan una gestión 360° de su operación, con descuentos y comunidad.",
-    incluyeAnterior: "Carrier Pro",
-    groups: [
-      {
-        title: "Gestión de viaje",
-        items: [
-          { icon: Route, t: "Registro de viáticos por viaje", s: "Asocia gastos a cada operación" },
-          { icon: Wallet, t: "Control de peajes", s: "Registro y reporte automático" },
-          { icon: FileBarChart, t: "Reportes consolidados", s: "Visión completa de tu operación" },
-        ],
-      },
-      {
-        title: "Comunidad & beneficios extra",
-        items: [
-          { icon: Sparkles, t: "Convenios y descuentos", s: "Servicios seleccionados para transportistas" },
-          { icon: Users, t: "Comunidad Carrier Pro", s: "Contactos y oportunidades de negocio" },
-          { icon: Headphones, t: "Soporte preferente", s: "Y prioridad en nuevas funciones" },
-        ],
-      },
-    ],
-  },
+  { id: "digital", name: "Carrier Digital", price: "19.90", icon: QrCode, cta: "ACTIVAR DIGITAL", tag: "Esencial", items: ["Membresía por placa", "Acceso mediante QR", "Beneficio de combustible", "Pago directo en Primax", "Soporte Carrier Pro"] },
+  { id: "fleet", name: "Fleet Óptimo", price: "29.90", icon: CreditCard, cta: "ELEGIR FLEET ÓPTIMO", tag: "Más elegido", featured: true, items: ["Todo lo de Carrier Digital", "Acceso mediante QR", "Tarjeta física Carrier Pro", "Entrega de tarjeta programada"] },
 ];
 
-const COMMON = [
-  "Afiliación por unidad",
-  "Sin contratos de permanencia",
-  "Sin tarjetas especiales",
-  "Cancela cuando quieras",
-];
+const EMPRESAS = ["Membresías para la flota", "Condiciones corporativas", "Beneficios especiales para colaboradores"];
+
+const reveal = (i = 0) => ({ initial: { opacity: 0, y: 24 }, whileInView: { opacity: 1, y: 0 }, viewport: { once: true, margin: "-60px" }, transition: { duration: 0.55, delay: i * 0.08 } });
 
 export default function Plans({ onActivar }) {
-  const [highlighted, setHighlighted] = useState("pro");
-
   return (
-    <section
-      id="planes"
-      data-testid="plans-section"
-      className="relative py-24 sm:py-32 lg:py-40 border-t border-white/10 overflow-hidden"
-    >
-      <div className="absolute top-20 left-1/2 -translate-x-1/2 -z-10 h-[500px] w-[1000px] rounded-full bg-[#f5961d]/10 blur-[180px]" />
-
+    <section id="planes" data-testid="plans-section" className="relative section-y border-t border-white/10 overflow-hidden">
+      <div className="absolute left-1/2 top-24 -z-10 h-[420px] w-[900px] -translate-x-1/2 rounded-full bg-[#f5961d]/10 blur-[160px]" />
       <div className="container-cp">
-        {/* Header */}
-        <div className="grid lg:grid-cols-[1.1fr_1fr] gap-8 items-end">
+        <div className="grid gap-6 lg:grid-cols-[1.2fr_1fr] lg:items-end">
           <div>
-            <span className="section-label">Planes & precios</span>
-            <h2 className="font-display mt-5 text-4xl sm:text-5xl lg:text-[64px] leading-[0.98] tracking-tight">
-              Elige el plan <br />
-              <span className="text-[#f5961d]">para tu unidad.</span>
-            </h2>
+            <span className="section-label">Planes y membresías</span>
+            <h2 className="h2-cp mt-5">Elige cómo <span className="text-[#f5961d]">empiezas a ahorrar.</span></h2>
           </div>
-          <p className="text-white/65 text-base sm:text-lg max-w-md">
-            Cada plan es <span className="text-white">por unidad/mes</span>. Empieza con lo esencial o escala a herramientas de control y comunidad cuando lo necesites.
-          </p>
+          <p className="text-white/60 text-base sm:text-lg max-w-md">Una membresía para reducir y optimizar los costos de tu vehículo, comenzando por el combustible en Primax.</p>
         </div>
 
-        {/* Common in all plans */}
-        <div className="mt-10 rounded-2xl border border-white/10 bg-white/[0.025] px-5 py-4 flex flex-wrap items-center gap-x-6 gap-y-2.5">
-          <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-[#f5961d]">
-            Incluido en todos los planes
-          </div>
-          {COMMON.map((c) => (
-            <span key={c} className="inline-flex items-center gap-1.5 text-sm text-white/75">
-              <Check size={14} className="text-[#f5961d]" strokeWidth={2.5} />
-              {c}
-            </span>
-          ))}
+        <GroupLabel>Para ti y tu vehículo</GroupLabel>
+        <div className="grid md:grid-cols-2 gap-6">
+          {PLANS.map((plan, i) => <PlanCard key={plan.id} plan={plan} index={i} onActivar={onActivar} />)}
         </div>
 
-        {/* Plan cards */}
-        <div className="mt-16 grid lg:grid-cols-3 gap-6 lg:gap-5 items-stretch">
-          {PLANS.map((p, i) => (
-            <PlanCard
-              key={p.id}
-              plan={p}
-              index={i}
-              isHighlighted={highlighted === p.id}
-              onHover={() => setHighlighted(p.id)}
-              onActivar={onActivar}
-            />
-          ))}
-        </div>
-
-        {/* Footer note */}
-        <div className="mt-8 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs">
-          <span className="font-mono uppercase tracking-[0.22em] text-white/40">
-            Precios en soles (S/) · IGV incluido · Por unidad / mes
-          </span>
-          <span className="text-white/50">
-            ¿Tienes más de 5 unidades?{" "}
-            <button
-              onClick={onActivar}
-              className="text-[#f5961d] underline-offset-4 hover:underline"
-              data-testid="plans-fleet-cta"
-            >
-              Cotiza por flota →
-            </button>
-          </span>
+        <div id="empresas" className="scroll-mt-24" data-testid="empresas-section">
+          <GroupLabel>Para empresas y flotas</GroupLabel>
+          <motion.article {...reveal()} className="relative overflow-hidden rounded-[32px] border border-white/15 bg-[#0b0b0b] p-2">
+            <div className="grid gap-2 lg:grid-cols-[1.4fr_1fr]">
+              <div className="relative rounded-[26px] p-7 sm:p-10">
+                <div className="absolute inset-0 dots-bg opacity-50" />
+                <div className="relative">
+                  <span className="inline-flex h-11 w-11 items-center justify-center rounded-xl bg-[#f5961d]/15 text-[#f5961d]"><Building2 size={20} /></span>
+                  <h3 className="font-display mt-6 text-3xl sm:text-4xl leading-tight">Carrier Empresas</h3>
+                  <p className="font-display mt-1 text-xl sm:text-2xl text-[#f5961d]">Tu flota ahorra. Tu equipo también.</p>
+                  <p className="mt-4 max-w-lg text-white/60">Para empresas e instituciones con flota: una propuesta corporativa para tu operación y tus colaboradores.</p>
+                  <ul className="mt-7 grid gap-3 sm:grid-cols-1">{EMPRESAS.map((item) => <CheckItem key={item}>{item}</CheckItem>)}</ul>
+                </div>
+              </div>
+              <div className="flex flex-col justify-center rounded-[26px] border border-white/[0.06] bg-black p-7 sm:p-10">
+                <div className="font-mono text-[10px] uppercase tracking-[0.22em] text-white/45">Desde</div>
+                <Price value="24.90" />
+                <button onClick={() => onActivar("Carrier Empresas")} className="btn-primary mt-8 w-full" data-testid="plan-cta-empresas">SOLICITAR PLAN EMPRESA<ArrowRight size={18} /></button>
+                <p className="mt-4 text-xs text-white/45">Sujeto a condiciones y validación corporativa.</p>
+              </div>
+            </div>
+          </motion.article>
         </div>
       </div>
     </section>
   );
 }
 
-function PlanCard({ plan, index, isHighlighted, onHover, onActivar }) {
-  const accent = plan.accent === "orange";
-  const Icon = plan.icon;
+const GroupLabel = ({ children }) => (
+  <div className="mt-14 mb-6 flex items-center gap-4 font-mono text-[11px] uppercase tracking-[0.22em] text-white/50">
+    {children}<span className="h-px flex-1 bg-white/10" />
+  </div>
+);
 
+const Price = ({ value, dark }) => (
+  <div className="mt-2 flex items-start gap-1.5">
+    <span className={`mt-2 text-lg font-semibold ${dark ? "text-black/60" : "text-white/45"}`}>S/</span>
+    <span className="font-display text-[64px] sm:text-[76px] leading-[0.9] tabular-nums">{value}</span>
+    <span className={`mt-auto mb-3 font-mono text-[11px] uppercase leading-tight tracking-[0.14em] ${dark ? "text-black/60" : "text-white/45"}`}>/ unidad<br />/ mes</span>
+  </div>
+);
+
+const CheckItem = ({ children, solid }) => (
+  <li className="flex items-start gap-3 text-[15px] text-white/85">
+    <span className={`mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${solid ? "bg-[#f5961d] text-black" : "bg-white/10 text-[#f5961d]"}`}>
+      <Check size={12} strokeWidth={3} />
+    </span>
+    {children}
+  </li>
+);
+
+function PlanCard({ plan, index, onActivar }) {
+  const { featured } = plan;
+  const Icon = plan.icon;
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 24 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{ duration: 0.55, delay: index * 0.08 }}
-      onMouseEnter={onHover}
-      className={`group relative flex h-full flex-col rounded-[32px] p-2 transition-[transform,box-shadow,border-color] duration-500 ${
-        accent
-          ? "border border-[#f5961d]/60 bg-[#0d0904] shadow-[0_40px_100px_-40px_rgba(245,150,29,0.65)] lg:-translate-y-3"
-          : `border bg-white/[0.02] ${isHighlighted ? "border-white/25" : "border-white/10"}`
-      }`}
+    <motion.article
+      {...reveal(index)}
       data-testid={`plan-card-${plan.id}`}
+      className={`relative flex flex-col rounded-[32px] p-2 ${featured ? "border border-[#f5961d]/60 bg-[#0d0904] shadow-[0_40px_100px_-40px_rgba(245,150,29,0.6)]" : "border border-white/10 bg-white/[0.02]"}`}
     >
-      <div
-        className={`relative overflow-hidden rounded-[26px] p-6 sm:p-7 ${
-          accent ? "bg-[#f5961d] text-black" : "border border-white/[0.06] bg-[#0b0b0b] text-white"
-        }`}
-      >
-        <div className={`absolute inset-0 ${accent ? "diag-lines-dark opacity-[0.08]" : "dots-bg opacity-60"}`} />
+      <div className={`relative overflow-hidden rounded-[26px] p-7 sm:p-8 ${featured ? "bg-[#f5961d] text-black" : "border border-white/[0.06] bg-[#0b0b0b]"}`}>
+        <div className={`absolute inset-0 ${featured ? "diag-lines-dark opacity-[0.08]" : "dots-bg opacity-60"}`} />
         <div className="relative flex flex-wrap items-center justify-between gap-3">
-          <div className="flex items-center gap-2.5">
-            <span className={`inline-flex h-9 w-9 items-center justify-center rounded-xl ${accent ? "bg-black text-[#f5961d]" : "bg-[#f5961d]/15 text-[#f5961d]"}`}>
-              <Icon size={17} strokeWidth={2} />
-            </span>
-            <h3 className="font-display text-xl leading-none whitespace-nowrap">{plan.nombre}</h3>
+          <div className="flex items-center gap-3">
+            <span className={`inline-flex h-10 w-10 items-center justify-center rounded-xl ${featured ? "bg-black text-[#f5961d]" : "bg-[#f5961d]/15 text-[#f5961d]"}`}><Icon size={18} /></span>
+            <h3 className="font-display text-2xl leading-none whitespace-nowrap">{plan.name}</h3>
           </div>
-          <span className={`inline-flex shrink-0 whitespace-nowrap items-center gap-1 rounded-full px-2.5 py-1 font-mono text-[9px] uppercase tracking-[0.2em] ${accent ? "bg-black text-[#f5961d]" : "border border-white/15 text-white/55"}`}>
-            {accent && <Sparkles size={10} />} {plan.tag}
+          <span className={`inline-flex items-center gap-1 whitespace-nowrap rounded-full px-3 py-1 font-mono text-[10px] uppercase tracking-[0.18em] ${featured ? "bg-black text-[#f5961d]" : "border border-white/15 text-white/55"}`}>
+            {featured && <Sparkles size={11} />}{plan.tag}
           </span>
         </div>
-        <div className="relative mt-8 flex items-start gap-1.5">
-          <span className={`mt-3 text-lg font-semibold ${accent ? "text-black/60" : "text-white/45"}`}>S/</span>
-          <span className="font-display text-[84px] sm:text-[96px] leading-[0.85] tabular-nums" data-testid={`plan-price-${plan.id}`}>{plan.precio}</span>
-          <span className={`mt-auto mb-2 text-xs font-mono uppercase tracking-[0.16em] ${accent ? "text-black/60" : "text-white/45"}`}>/ unidad<br />/ mes</span>
-        </div>
-        <p className={`relative mt-6 font-display text-lg leading-snug ${accent ? "text-black" : "text-white/90"}`}>{plan.tagline}</p>
+        <div className="relative mt-8"><Price value={plan.price} dark={featured} /></div>
       </div>
-
-      <div className="flex flex-1 flex-col px-5 pb-5 pt-6 sm:px-6">
-        <p className="text-sm leading-relaxed text-white/55 lg:min-h-[66px]">{plan.descripcion}</p>
-
-        {plan.incluyeAnterior && (
-          <div className={`mt-5 inline-flex items-center gap-2 self-start rounded-full border px-3.5 py-2 text-xs font-medium ${accent ? "border-[#f5961d]/40 bg-[#f5961d]/10 text-[#f5961d]" : "border-white/15 bg-white/5 text-white/75"}`}>
-            <Plus size={13} strokeWidth={2.5} />
-            Todo lo del plan <span className="font-semibold">{plan.incluyeAnterior}</span>
-          </div>
-        )}
-
-        <div className="mt-7 flex-1 space-y-7">
-          {plan.groups.map((g) => (
-            <div key={g.title}>
-              <div className="mb-4 flex items-center gap-3 font-mono text-[10px] uppercase tracking-[0.22em] text-white/40">
-                {g.title}
-                <span className="h-px flex-1 bg-white/10" />
-              </div>
-              <ul className="space-y-3.5">
-                {g.items.map((it) => (
-                  <li key={it.t} className="flex items-start gap-3">
-                    <span className={`mt-0.5 inline-flex h-5 w-5 shrink-0 items-center justify-center rounded-full ${accent ? "bg-[#f5961d] text-black" : "bg-white/10 text-[#f5961d]"}`}>
-                      <Check size={12} strokeWidth={3} />
-                    </span>
-                    <div className="min-w-0">
-                      <div className="text-sm font-medium leading-tight text-white">{it.t}</div>
-                      <div className="mt-1 text-xs leading-snug text-white/45">{it.s}</div>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
-        </div>
-
-        <button
-          onClick={onActivar}
-          className={`group/btn mt-9 inline-flex items-center justify-center gap-2 rounded-full py-4 text-sm font-semibold transition-[transform,background-color,box-shadow,border-color] duration-300 hover:-translate-y-0.5 ${
-            accent
-              ? "bg-[#f5961d] text-black hover:shadow-[0_20px_50px_-12px_rgba(245,150,29,0.7)]"
-              : "border border-white/20 bg-white/5 text-white hover:border-white/40 hover:bg-white/10"
-          }`}
-          data-testid={`plan-cta-${plan.id}`}
-        >
-          Activar {plan.nombre}
-          <ArrowRight size={16} className="transition-transform group-hover/btn:translate-x-1" />
+      <div className="flex flex-1 flex-col px-5 pb-5 pt-7 sm:px-6">
+        <ul className="flex-1 space-y-4">{plan.items.map((item) => <CheckItem key={item} solid={featured}>{item}</CheckItem>)}</ul>
+        <button onClick={() => onActivar(plan.name)} className={`${featured ? "btn-primary" : "btn-secondary"} mt-9 w-full`} data-testid={`plan-cta-${plan.id}`}>
+          {plan.cta}<ArrowRight size={18} />
         </button>
       </div>
-    </motion.div>
+    </motion.article>
   );
 }
