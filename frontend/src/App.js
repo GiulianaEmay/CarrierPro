@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import Trust from "./components/Trust";
+import StatsStrip from "./components/StatsStrip";
 import HowItWorks from "./components/HowItWorks";
 import StationsMap from "./components/StationsMap";
 import Benefits from "./components/Benefits";
@@ -40,6 +41,7 @@ export default function App() {
       <Navbar onActivar={openLead} />
       <main>
         <Hero onActivar={openLead} />
+        <StatsStrip />
         <Trust />
         <HowItWorks onActivar={openLead} />
         <StationsMap />

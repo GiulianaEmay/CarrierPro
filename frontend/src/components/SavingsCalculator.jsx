@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { Calculator, Minus, Plus, MessageCircle, Fuel } from "lucide-react";
+import { Calculator, Minus, Plus, MessageCircle, Fuel, Share2 } from "lucide-react";
 import { WHATSAPP_NUMBER } from "../App";
 import {
   SAVINGS_PER_GALLON,
@@ -22,6 +22,8 @@ export default function SavingsCalculator() {
 
   const waMsg = `Hola Carrier Pro, usé la calculadora: ${units} ${units > 1 ? "unidades" : "unidad"} con ${fmt(gallons)} galones/mes cada una. Ahorro estimado: S/ ${fmt(monthly)} al mes. Quiero activar mi membresía.`;
   const waUrl = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(waMsg)}`;
+  const shareMsg = `Mira esto: con Carrier Pro ahorraría S/ ${fmt(monthly)} al mes (S/ ${fmt(yearly)} al año) en combustible con ${units} ${units > 1 ? "unidades" : "unidad"}. Calcula tu ahorro aquí: ${window.location.origin}/#calculadora`;
+  const shareUrl = `https://wa.me/?text=${encodeURIComponent(shareMsg)}`;
 
   return (
     <section id="calculadora" data-testid="calculator-section" className="relative py-24 sm:py-32 lg:py-40 border-t border-white/5 overflow-hidden">
@@ -111,6 +113,15 @@ export default function SavingsCalculator() {
                 data-testid="calc-whatsapp-cta"
               >
                 <MessageCircle size={18} /> Quiero este ahorro
+              </a>
+              <a
+                href={shareUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-3 inline-flex w-full items-center justify-center gap-2 rounded-full border border-black/30 px-7 py-3.5 text-sm font-semibold text-black transition-colors duration-300 hover:bg-black/10"
+                data-testid="calc-share-cta"
+              >
+                <Share2 size={16} /> Compartir con un colega
               </a>
               <p className="mt-3 text-center text-[11px] text-black/60">*Estimación referencial. El ahorro puede ser mayor según la estación.</p>
             </div>

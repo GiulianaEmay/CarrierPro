@@ -82,3 +82,9 @@ Crear una landing page premium, moderna, mobile-first y altamente optimizada par
 ## 2026-06 Update 2
 - New SavingsCalculator section (after Benefits): slider 50–2500 gal/unidad, units stepper, monthly/yearly gross savings, WhatsApp CTA with prefilled result. Editable values in /app/frontend/src/config.js (SAVINGS_PER_GALLON = 2.40).
 - Plans redesigned (price panel header, featured orange card, check lists). Testimonials redesigned (featured editorial quote + 2 stacked cards), same texts.
+
+## 2026-06 Update 3
+- "Calculadora" link in navbar (desktop + mobile) and footer.
+- StatsStrip between Hero and Trust: animated counters (+120 unidades, +8 estaciones, 3 ciudades) editable in config.js STATS (example values).
+- Calculator "Compartir con un colega" button: wa.me/?text= with savings + site link.
+- Skipped by user: email backup, video testimonials.
