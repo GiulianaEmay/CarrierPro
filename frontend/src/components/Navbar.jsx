@@ -112,6 +112,7 @@ export default function Navbar({ onActivar }) {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
+              data-testid="nav-mobile-whatsapp"
               className="rounded-full border border-white/20 bg-white/5 px-5 py-3 text-sm font-semibold text-white text-center"
             >
               Hablar por WhatsApp

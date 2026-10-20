@@ -43,21 +43,20 @@ export default function HowItWorks({ onActivar }) {
           <h2 className="h2-cp mt-5">
             Empieza a ahorrar <br /> en <span className="text-[#f5961d]">3 pasos.</span>
           </h2>
-          <p className="mt-5 text-white/60 text-base sm:text-lg max-w-xl">
-            PLACA → MEMBRESÍA → QR / TARJETA → BENEFICIO
-          </p>
-        </div>
-
-        {/* Timeline */}
-        <div className="relative mt-10 sm:mt-12">
-          {/* vertical line */}
-          <div className="absolute left-7 sm:left-1/2 top-0 bottom-0 w-px bg-gradient-to-b from-[#f5961d]/0 via-[#f5961d]/40 to-[#f5961d]/0 sm:-translate-x-1/2 hidden sm:block" />
-
-          <div className="space-y-12 sm:space-y-20">
-            {STEPS.map((s, i) => (
-              <Step key={s.n} step={s} index={i} />
+          <div className="mt-6 flex flex-wrap items-center gap-2" data-testid="howitworks-flow">
+            {["Placa", "Membresía", "QR / Tarjeta", "Beneficio"].map((t, i, arr) => (
+              <React.Fragment key={t}>
+                <span className={`rounded-full px-3.5 py-1.5 font-mono text-[11px] uppercase tracking-[0.16em] ${i === arr.length - 1 ? "bg-[#f5961d] text-black" : "border border-white/15 bg-white/[0.04] text-white/75"}`}>{t}</span>
+                {i < arr.length - 1 && <ArrowRight size={14} className="text-[#f5961d]" />}
+              </React.Fragment>
             ))}
           </div>
+        </div>
+
+        <div className="relative mt-10 sm:mt-12 grid gap-4 md:grid-cols-3 md:gap-6">
+          {STEPS.map((s, i) => (
+            <Step key={s.n} step={s} index={i} last={i === STEPS.length - 1} />
+          ))}
         </div>
 
         <button onClick={onActivar} className="btn-primary mt-12" data-testid="howitworks-cta">
@@ -68,51 +67,35 @@ export default function HowItWorks({ onActivar }) {
   );
 }
 
-function Step({ step, index }) {
+function Step({ step, index, last }) {
   const Icon = step.icon;
-  const isEven = index % 2 === 1;
-
   return (
     <motion.div
-      initial={{ opacity: 0, y: 30 }}
+      initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-100px" }}
-      transition={{ duration: 0.7, delay: 0.05 }}
-      className="relative grid sm:grid-cols-2 gap-6 sm:gap-12 items-center"
+      viewport={{ once: true, margin: "-60px" }}
+      transition={{ duration: 0.55, delay: index * 0.12 }}
+      className="relative flex flex-col rounded-[28px] border border-white/10 bg-[#0a0a0a] p-2"
       data-testid={`step-${step.n}`}
     >
-      {/* timeline dot */}
-      <div className="absolute left-7 sm:left-1/2 -translate-x-1/2 z-10">
-        <div className="relative">
-          <span className="absolute inset-0 -m-2 rounded-full bg-[#f5961d]/30 pulse-ring" />
-          <div className="relative h-4 w-4 rounded-full bg-[#f5961d] border-4 border-black shadow-[0_0_18px_rgba(245,150,29,0.7)]" />
-        </div>
+      <StepVisual variant={step.visual} Icon={Icon} />
+      <div className="px-5 pb-6 pt-6 sm:px-6">
+        <span className="font-mono text-[11px] uppercase tracking-[0.22em] text-[#f5961d]">Paso {step.n}</span>
+        <h3 className="font-display mt-2 text-2xl leading-tight">{step.title}</h3>
+        <p className="mt-2 text-[15px] leading-relaxed text-white/60">{step.desc}</p>
       </div>
-
-      {/* text */}
-      <div className={`pl-16 sm:pl-0 ${isEven ? "sm:order-2 sm:pl-12" : "sm:pr-12 sm:text-right"}`}>
-        <span className="font-mono text-xs uppercase tracking-[0.22em] text-[#f5961d]">
-          Paso {step.n}
+      {!last && (
+        <span className="absolute left-1/2 -bottom-5 z-10 inline-flex h-9 w-9 -translate-x-1/2 rotate-90 items-center justify-center rounded-full border border-[#f5961d]/50 bg-black text-[#f5961d] md:left-auto md:-right-[30px] md:top-[128px] md:bottom-auto md:translate-x-0 md:rotate-0">
+          <ArrowRight size={16} />
         </span>
-        <h3 className="font-display mt-3 text-3xl sm:text-4xl leading-tight">
-          {step.title}
-        </h3>
-        <p className={`mt-3 text-white/60 max-w-md ${isEven ? "" : "sm:ml-auto"}`}>
-          {step.desc}
-        </p>
-      </div>
-
-      {/* visual */}
-      <div className={`pl-16 sm:pl-0 ${isEven ? "sm:order-1 sm:pr-12" : "sm:pl-12"}`}>
-        <StepVisual variant={step.visual} Icon={Icon} />
-      </div>
+      )}
     </motion.div>
   );
 }
 
 function StepVisual({ variant, Icon }) {
   return (
-    <div className="relative h-56 sm:h-64 rounded-3xl border border-white/10 bg-gradient-to-br from-white/[0.04] to-black overflow-hidden">
+    <div className="relative h-64 rounded-[22px] border border-white/[0.06] bg-gradient-to-br from-white/[0.04] to-black overflow-hidden">
       <div className="absolute inset-0 dots-bg opacity-50" />
       <div className="absolute top-4 left-4 inline-flex h-10 w-10 items-center justify-center rounded-xl bg-[#f5961d]/15 border border-[#f5961d]/30 text-[#f5961d]">
         <Icon size={18} />
@@ -127,11 +110,10 @@ function StepVisual({ variant, Icon }) {
 
 function FormVisual() {
   return (
-    <div className="absolute inset-0 flex items-center justify-center p-8">
-      <div className="w-full max-w-[260px] space-y-3">
+    <div className="absolute inset-0 flex items-center justify-center px-8 pt-10">
+      <div className="w-full max-w-[240px] space-y-2.5">
         {[
           ["Placa de unidad", "T7K-823", 0.2],
-          ["Empresa", "Transportes Norte", 0.5],
           ["Teléfono", "+51 944 123 456", 0.8],
         ].map(([label, val, d], i) => (
           <motion.div

@@ -88,3 +88,8 @@ Crear una landing page premium, moderna, mobile-first y altamente optimizada par
 - StatsStrip between Hero and Trust: animated counters (+120 unidades, +200 estaciones, +15 ciudades del norte) editable in config.js STATS.
 - Calculator "Compartir con un colega" button: wa.me/?text= with savings + site link.
 - Skipped by user: email backup, video testimonials.
+
+## 2026-10 MERGE (IMPORTANT)
+- User edited GitHub repo (https://github.com/GiulianaEmay/CarrierPro, main@94ba272) outside Emergent. Repo version is now the BASE in /app/frontend (plans Digital 19.90/Fleet 29.90/Empresas 24.90, CorporateModal, config/corporate.js, SEO, GA, sitemap, robots, fonts Baloo 2 + Work Sans). WhatsApp = 51973982417 (user confirmed).
+- Re-applied on top: StatsStrip, SavingsCalculator (config/site.js), Calculadora nav link, Emergent-style footer w/ socials (config/corporate.js SOCIAL_LINKS) + Emay credits, Plans premium redesign, section-y/h2-cp spacing, transparent logo-wordmark.png, hero membership card visual, horizontal HowItWorks flow, FAQ reduced to 5, calculator "¿Cómo se lee?" + formula.
+- Always remind user: Save to GitHub -> Netlify deploys. Don't edit GitHub directly or versions diverge again.

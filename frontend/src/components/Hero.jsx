@@ -41,7 +41,7 @@ export default function Hero({ onActivar }) {
               initial={{ opacity: 0, y: 16 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.7, delay: 0.05 }}
-              className="font-display mt-6 text-[44px] leading-[0.95] sm:text-6xl lg:text-[78px] lg:leading-[0.92] tracking-tight"
+              className="font-display mt-7 text-[46px] leading-[1.0] sm:text-[64px] lg:text-[70px] lg:leading-[0.98]"
               data-testid="hero-headline"
             >
               AHORRA
@@ -203,6 +203,37 @@ function TruckRoute() {
         <div className="truck-anim h-full inline-block">
           <Truck />
         </div>
+      </div>
+
+      {/* Membership card */}
+      <div className="absolute left-1/2 top-[46%] w-[78%] max-w-[340px] -translate-x-1/2 -translate-y-1/2" data-testid="hero-membership-card">
+      <motion.div
+        initial={{ opacity: 0, y: 20, rotate: -4 }}
+        animate={{ opacity: 1, y: 0, rotate: -4 }}
+        transition={{ duration: 0.8, delay: 0.5 }}
+      >
+        <div className="relative aspect-[1.6/1] overflow-hidden rounded-2xl border border-white/15 bg-gradient-to-br from-[#1a1206] via-[#0d0d0d] to-black p-5 shadow-[0_30px_80px_-20px_rgba(245,150,29,0.45)]">
+          <div className="absolute -right-10 -top-10 h-40 w-40 rounded-full bg-[#f5961d]/25 blur-3xl" />
+          <div className="relative flex h-full flex-col justify-between">
+            <div className="flex items-start justify-between">
+              <img src="/logo-wordmark.png" alt="" className="h-6 w-auto" />
+              <span className="rounded-full bg-[#f5961d]/15 px-2 py-0.5 font-mono text-[9px] uppercase tracking-[0.18em] text-[#f5961d]">Activa</span>
+            </div>
+            <div className="flex items-end justify-between gap-3">
+              <div>
+                <div className="font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">Placa</div>
+                <div className="font-mono text-lg tracking-[0.15em] text-white">T7K-823</div>
+                <div className="mt-1 font-mono text-[9px] uppercase tracking-[0.2em] text-white/40">Beneficio Primax</div>
+              </div>
+              <div className="grid h-14 w-14 grid-cols-5 gap-[2px] rounded-md bg-white p-1.5">
+                {Array.from({ length: 25 }).map((_, i) => (
+                  <span key={i} className={(i * 7 + 3) % 3 ? "bg-black" : "bg-transparent"} />
+                ))}
+              </div>
+            </div>
+          </div>
+        </div>
+      </motion.div>
       </div>
 
       {/* Foreground info card */}

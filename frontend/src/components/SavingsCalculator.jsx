@@ -48,11 +48,11 @@ export default function SavingsCalculator() {
         >
           <div className="p-7 sm:p-10 lg:p-12 space-y-10">
             <div>
-              <div className="flex items-end justify-between gap-4">
+              <div className="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between sm:gap-4">
                 <label htmlFor="gallons" className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">
                   Galones al mes por unidad
                 </label>
-                <div className="font-display text-4xl sm:text-5xl tabular-nums" data-testid="calc-gallons-value">
+                <div className="font-display whitespace-nowrap text-4xl sm:text-5xl tabular-nums" data-testid="calc-gallons-value">
                   {fmt(gallons)} <span className="text-base text-white/40 font-body font-normal">gal</span>
                 </div>
               </div>
@@ -74,16 +74,25 @@ export default function SavingsCalculator() {
               </div>
             </div>
 
-            <div className="flex items-center justify-between gap-4">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
               <div>
                 <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-white/45">Número de unidades</div>
                 <div className="mt-1 text-sm text-white/55">Cada unidad suma su propio ahorro.</div>
               </div>
-              <div className="flex items-center gap-2 rounded-full border border-white/15 bg-black p-1.5">
+              <div className="flex items-center gap-2 self-start rounded-full border border-white/15 bg-black p-1.5 sm:self-auto">
                 <StepBtn onClick={() => setUnits((u) => Math.max(1, u - 1))} testid="calc-units-minus" label="Quitar unidad"><Minus size={16} /></StepBtn>
                 <span className="w-10 text-center font-display text-2xl tabular-nums" data-testid="calc-units-value">{units}</span>
                 <StepBtn onClick={() => setUnits((u) => Math.min(MAX_UNITS, u + 1))} testid="calc-units-plus" label="Agregar unidad"><Plus size={16} /></StepBtn>
               </div>
+            </div>
+
+            <div className="rounded-2xl border border-white/10 bg-black/40 p-5" data-testid="calc-how-to">
+              <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-[#f5961d]">¿Cómo se lee?</div>
+              <ol className="mt-3 space-y-2 text-sm leading-relaxed text-white/65">
+                <li><span className="text-white font-semibold">1.</span> Mueve la barra hasta los galones que carga <span className="text-white">cada unidad</span> en un mes.</li>
+                <li><span className="text-white font-semibold">2.</span> Indica cuántas unidades tienes.</li>
+                <li><span className="text-white font-semibold">3.</span> En el recuadro naranja ves cuánto <span className="text-white">dejarías de pagar</span> al mes y al año.</li>
+              </ol>
             </div>
 
             <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-black/40 px-5 py-4 text-sm text-white/60">
@@ -92,13 +101,16 @@ export default function SavingsCalculator() {
             </div>
           </div>
 
-          <div className="relative p-7 sm:p-10 lg:p-12 bg-[#f5961d] text-black flex flex-col justify-between gap-10 overflow-hidden">
+          <div className="relative p-7 sm:p-10 lg:p-12 bg-[#f5961d] text-black flex flex-col justify-center gap-10 overflow-hidden">
             <div className="absolute inset-0 opacity-[0.12] diag-lines-dark" />
             <div className="relative">
               <div className="font-mono text-[10px] uppercase tracking-[0.24em] text-black/60">Ahorro mensual estimado</div>
               <div className="mt-3 font-display text-[56px] sm:text-[76px] leading-none tabular-nums" data-testid="calc-monthly-savings">
                 <span className="text-2xl sm:text-3xl align-top mr-1">S/</span>{fmt(monthly)}
               </div>
+              <p className="mt-3 text-sm text-black/70" data-testid="calc-formula">
+                {fmt(gallons)} gal × {units} {units > 1 ? "unidades" : "unidad"} × S/ {SAVINGS_PER_GALLON.toFixed(2)} de ahorro por galón
+              </p>
               <div className="mt-6 grid grid-cols-2 gap-px rounded-2xl overflow-hidden bg-black/15">
                 <Stat label="Al año" value={`S/ ${fmt(yearly)}`} testid="calc-yearly-savings" />
                 <Stat label="Galones totales" value={fmt(gallons * units)} testid="calc-total-gallons" />

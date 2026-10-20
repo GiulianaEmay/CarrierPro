@@ -1,0 +1,30 @@
+{
+  "summary": "Frontend-only test of the Carrier Pro static landing page at 1280px desktop and 390px mobile. All requested features passed: no console errors, hero shown, StatsStrip sits between Hero and Trust and counts up to +120/+200/+15, the nav and mobile-menu Calculadora links scroll to #calculadora, the mobile menu shows all 6 links plus both buttons in full, the calculator math and limits are correct (default S/1,920 a month and S/23,040 a year; 3 units x 1000 gal = S/7,200 a month), and the WhatsApp and share links have the correct prefilled text. Each plan CTA opens the LeadModal with its plan selected (Empresas sets type=empresa), and the success link goes to wa.me/51973982417 with the form data. The footer social links, copyright (2026) and credits are correct. Partners, careers and contact open the CorporateModal and close it correctly. The sticky WhatsApp button does not cover the social icons on desktop or mobile. There is no horizontal scroll at 390 or 1280, and section spacing is consistent (96px top and bottom).",
+  "backend_issues": {"critical": [], "minor": []},
+  "frontend_issues": {
+    "ui_bugs": [],
+    "integration_issues": [],
+    "design_issues": [
+      {"screen": "Footer Contacto column", "issues": ["The email carrier.pro.fleet@gmail.com wraps mid-word ('gmai|l.com') on desktop and mobile because of the break-all class. Use break-words, or put a break after '@'."]},
+      {"screen": "Calculator (390px)", "issues": ["'800' and 'gal' split across two lines and the 'GALONES AL MES POR UNIDAD' label wraps. The 'Número de unidades' block also wraps tightly next to the stepper. Consider stacking the label and value on mobile, or adding whitespace-nowrap to the value."]},
+      {"screen": "Footer bottom bar (desktop)", "issues": ["The top border of the bottom bar starts at the container edge (x=40) while the content starts at x=88, so the line is wider than the columns above. Cosmetic only."]}
+    ]
+  },
+  "test_report_links": [],
+  "action_items": [
+    "Optional: replace break-all with break-words on the footer email",
+    "Optional: tighten the mobile layout of the calculator's gallons value and label",
+    "Optional: add data-testid='nav-mobile-whatsapp' to the mobile menu 'Hablar por WhatsApp' link (it has none)"
+  ],
+  "critical_code_review_comments": [
+    "The mobile menu WhatsApp link in Navbar.jsx has no data-testid",
+    "Circular import: components import WHATSAPP_NUMBER/WHATSAPP_URL from App.js, which imports those same components. It works today because the values are only read at render time, but moving these constants to config/site.js would be safer",
+    "LeadModal relies on native HTML5 'required' validation. The custom lead-error box only shows for the empresa-missing case and similar, which is fine"
+  ],
+  "updated_files": [],
+  "success_rate": {"backend": "N/A (no backend by design)", "frontend": "100%"},
+  "seed_data_creation": "none",
+  "retest_needed": false,
+  "should_main_agent_self_test": true,
+  "context_for_next_testing_agent": "Static site with no /api. Testids checked: stats-strip, stat-value-0..2, nav-link-calculadora, nav-menu-toggle, nav-mobile-link-*, calc-*, plan-card-*, plan-cta-*, lead-modal, lead-type, lead-input-*, lead-submit, lead-success-whatsapp, lead-success-close, footer-social-*, footer-copyright, footer-credits, footer-partners/careers/contact, corporate-modal, corporate-close. The page uses CSS smooth scroll; set scrollBehavior='auto' before scrollTo in tests."
+}

@@ -37,7 +37,7 @@ export default function Footer({ onOpenCorporate }) {
           </FooterColumn>
           <FooterColumn title="Contacto">
             <li><a className={LINK_CLASS} href={WHATSAPP_URL} target="_blank" rel="noopener noreferrer" data-testid="footer-whatsapp">+51 973 982 417</a></li>
-            <li><a className={`${LINK_CLASS} break-all`} href={`mailto:${CORPORATE_EMAIL}`}>{CORPORATE_EMAIL}</a></li>
+            <li><a className={`${LINK_CLASS} break-words`} href={`mailto:${CORPORATE_EMAIL}`}>{CORPORATE_EMAIL}</a></li>
             <li className="text-white/55">Trujillo · Perú</li>
             <li><button className={LINK_CLASS} onClick={() => onOpenCorporate("contact")} data-testid="footer-contact">Formulario de contacto</button></li>
           </FooterColumn>
@@ -49,7 +49,7 @@ export default function Footer({ onOpenCorporate }) {
         </div>
       </div>
 
-      <div className="container-cp mt-20 grid items-center gap-6 border-t border-white/10 pt-8 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-white/45 md:grid-cols-3 md:text-left">
+      <div className="container-cp mt-20"><div className="grid items-center gap-6 border-t border-white/10 pt-8 text-center font-mono text-[11px] uppercase tracking-[0.16em] text-white/45 md:grid-cols-3 md:text-left">
         <div data-testid="footer-copyright">Copyright © Emay Tech {new Date().getFullYear()}</div>
         <div className="leading-relaxed md:text-center" data-testid="footer-credits">
           Diseñado y construido por<br />la increíble gente de Emay 💜
@@ -64,7 +64,7 @@ export default function Footer({ onOpenCorporate }) {
             );
           })}
         </div>
-      </div>
+      </div></div>
     </footer>
   );
 }

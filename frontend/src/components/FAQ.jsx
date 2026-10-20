@@ -4,37 +4,25 @@ import { Plus, Minus } from "lucide-react";
 
 const FAQS = [
   {
-    "q": "¿Qué diferencia hay entre Carrier Digital y Fleet Óptimo?",
-    "a": "Carrier Digital cuesta S/19.90 por unidad al mes e incluye acceso mediante QR, beneficio de combustible, pago directo en Primax y soporte. Fleet Óptimo cuesta S/29.90 e incluye todo lo de Digital más tarjeta física Carrier Pro con entrega programada."
+    q: "¿Qué plan me conviene?",
+    a: "Carrier Digital (S/19.90 por unidad al mes) incluye QR, beneficio de combustible, pago directo en Primax y soporte. Fleet Óptimo (S/29.90) suma la tarjeta física Carrier Pro con entrega programada. Si tienes una empresa o institución con flota, Carrier Empresas (S/24.90) ofrece condiciones corporativas, sujeto a validación.",
   },
   {
-    "q": "¿Qué es Carrier Empresas?",
-    "a": "Es la propuesta para empresas e instituciones con flota: S/24.90 por unidad al mes, membresías para la flota, condiciones corporativas y beneficios especiales para colaboradores. Sujeto a condiciones y validación corporativa."
+    q: "¿Qué necesito y cuánto demora la activación?",
+    a: "Solo tu placa y teléfono (RUC si necesitas comprobante). Puedes registrar varias unidades, ya que la membresía es por placa. Tu QR se activa aproximadamente 5 minutos después de confirmar el pago.",
   },
   {
-    "q": "¿Cuánto demora la activación?",
-    "a": "El QR se activa aproximadamente 5 minutos después de confirmar el pago. La entrega de la tarjeta física de Fleet Óptimo se programa por separado."
+    q: "¿Dónde uso mi beneficio?",
+    a: "En las estaciones Primax habilitadas para Carrier Pro. Revisa el mapa para confirmar las estaciones disponibles antes de cargar.",
   },
   {
-    "q": "¿Qué necesito para afiliarme?",
-    "a": "Tu placa y teléfono; RUC cuando sea necesario para el comprobante correspondiente. Para Carrier Empresas, comparte también la empresa y el número aproximado de unidades."
+    q: "¿A quién le pago el combustible?",
+    a: "Pagas directamente en Primax, que emite tu comprobante. Carrier Pro solo cobra tu membresía; nunca recibe el dinero del combustible.",
   },
   {
-    "q": "¿Puedo registrar varias unidades?",
-    "a": "Sí. La membresía es por placa. Puedes registrar varias unidades y consultar Carrier Empresas si representas a una empresa o institución con flota."
+    q: "¿Cuánto puedo ahorrar?",
+    a: "Depende de tu consumo, la estación y las condiciones vigentes. Usa la calculadora para ver una estimación referencial según tus galones al mes.",
   },
-  {
-    "q": "¿Dónde uso mi beneficio?",
-    "a": "En las estaciones Primax habilitadas para Carrier Pro. Consulta el mapa y confirma las ciudades y estaciones disponibles antes de cargar."
-  },
-  {
-    "q": "¿A quién le pago el combustible?",
-    "a": "Pagas directamente en Primax, que emite tu comprobante. Carrier Pro gestiona y cobra tu membresía; no recibe el dinero destinado al combustible."
-  },
-  {
-    "q": "¿Cuánto puedo ahorrar?",
-    "a": "Depende de las condiciones vigentes, la estación y tu consumo. Los precios de combustible son variables; confirma el beneficio antes de cargar. No prometemos una cifra fija de ahorro."
-  }
 ];
 
 export default function FAQ() {
